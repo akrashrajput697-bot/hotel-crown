@@ -1,0 +1,1039 @@
+.available-rooms-page {
+  background: #f8f9fa;
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+.search-hero-section {
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('https://hotelcrowncp.com/assets/images/banner/banner-img.webp') center/cover no-repeat;
+  padding: 100px 20px 60px 20px;
+  text-align: left;
+  color: #ffffff;
+}
+
+.search-hero-section h1 {
+  font-size: 42px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.search-hero-section p {
+  font-size: 16px;
+  color: #e0e0e0;
+}
+
+.search-main-container {
+  max-width: 1100px;
+  margin: 40px auto 0 auto;
+  padding: 0 20px;
+}
+
+.search-summary-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 25px 30px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.search-summary-left span {
+  font-size: 12px;
+  color: #888;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.search-summary-left h3 {
+  font-size: 22px;
+  color: #111;
+  margin: 5px 0 0 0;
+}
+
+.search-summary-center {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.search-summary-center span {
+  font-size: 14px;
+  color: #444;
+  font-weight: 500;
+}
+
+.modify-search-btn {
+  background: transparent;
+  border: 1px solid #ddd;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.room-result-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 30px;
+  padding: 25px;
+  margin-bottom: 25px;
+  align-items: stretch; /* Image aur content dono ki height ko barabar stretch karega */
+}
+
+.room-result-img-box {
+  position: relative;
+  height: 100%;
+  display: flex;
+}
+
+.room-result-img-box img {
+  width: 100%;
+  height: 100%;
+  min-height: 420px; /* Neeche ki white space khatam karke image ko poora fit karega */
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.room-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #28a745;
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.room-photos-count {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: bold;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.room-result-content h2 {
+  font-size: 22px;
+  color: #111;
+  margin: 0 0 5px 0;
+}
+
+.room-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* --- Policy & Info Icon Hover Styling --- */
+.room-policy {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #333333;
+}
+
+.info-icon-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.info-icon-badge {
+  font-size: 14px;
+  color: #007bff;
+  font-weight: bold;
+  padding: 2px 4px;
+}
+
+/* Default mein popup chupaya hua hai */
+.info-icon-container .policy-popup-box {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #dcdde1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 12px 16px;
+  width: 240px;
+  z-index: 100;
+  margin-top: 5px;
+}
+
+/* Jab mouse sirf icon ke upar aayega tabhi popup show hoga */
+.info-icon-container:hover .policy-popup-box {
+  display: block;
+}
+
+.policy-popup-box p {
+  margin: 0 0 6px 0;
+  font-size: 13px;
+  color: #333333;
+  text-align: left;
+}
+
+.policy-popup-box .last-policy-item {
+  margin-bottom: 8px;
+  color: #e67e22;
+  font-weight: 500;
+}
+
+.policy-popup-box .more-rates-link {
+  display: inline-block;
+  margin-top: 4px;
+  color: #007bff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.policy-popup-box .more-rates-link:hover {
+  color: #0056b3;
+}
+
+.room-policy strong {
+  color: #28a745;
+}
+
+.room-amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.room-amenities-grid span {
+  font-size: 13px;
+  color: #555;
+}
+
+.room-divider {
+  border: 0;
+  border-top: 1px solid #eee;
+  margin: 15px 0;
+}
+
+.room-config-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.counter-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.counter-label {
+  font-size: 13px;
+  font-weight: bold;
+  color: #333;
+}
+
+.counter-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: black;
+}
+
+.counter-btn {
+  background: black;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.counter-value {
+  padding: 0 15px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.more-rates-btn {
+  background: transparent;
+  border: 1px solid #ddd;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Price Breakdown Styles */
+.room-price-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 15px 0;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #555;
+}
+
+.total-row {
+  font-weight: bold;
+  color: #111;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.total-price-highlight {
+  color: #28a745;
+}
+
+/* Footer Actions Styles */
+.room-footer-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.room-guest-info {
+  font-size: 14px;
+  color: #444;
+  font-weight: 500;
+}
+
+.room-action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.add-to-cart-btn {
+  background: #f1f1f1;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.room-book-now-btn {
+  display: inline-block;
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .room-result-card {
+    grid-template-columns: 1fr;
+  }
+  .search-summary-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .room-footer-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .room-action-buttons {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* --- Image Modal / Lightbox CSS --- */
+.image-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(117, 116, 116, 0.582);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.image-modal-content {
+  position: relative;
+  max-width: 800px;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-img-container {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+.modal-img-container img {
+  width: 100%;
+  max-height: 550px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: -45px;
+  right: 0;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 36px;
+  cursor: pointer;
+}
+
+.modal-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: none;
+  font-size: 24px;
+  padding: 12px 16px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+  transition: background 0.3s;
+}
+
+.modal-arrow:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.modal-prev {
+  left: -20px;
+}
+
+.modal-next {
+  right: -20px;
+}
+
+.modal-image-counter {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 5px 15px;
+  font-size: 14px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+/* --- Universal Responsive Code for All CSS Files --- */
+
+/* Images aur sections ko overflow hone se bachane ke liye */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Tablets aur Medium screens ke liye (Max Width: 992px) */
+@media screen and (max-width: 992px) {
+  .container, 
+  .blog-container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+
+/* Mobile screens ke liye (Max Width: 768px) */
+@media screen and (max-width: 768px) {
+  /* Headings aur text size ko mobile friendly banana */
+  h1 {
+    font-size: 26px !important;
+    line-height: 1.3 !important;
+  }
+  
+  h2 {
+    font-size: 22px !important;
+  }
+
+  p {
+    font-size: 14px !important;
+  }
+
+  /* Saare grids aur flexbox rows ko mobile par 1 column mein karna */
+  .grid, 
+  .articles-grid, 
+  .rooms-grid {
+    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* Sections ki padding kam karna taake mobile par jaga zaya na ho */
+  section {
+    padding: 30px 15px !important;
+  }
+}
+/* --- Policy Popup Styling --- */
+.room-policy-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.room-policy {
+  cursor: pointer;
+  user-select: none;
+}
+
+.policy-popup-box {
+  position: absolute;
+  right: 0;
+  top: 130%;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  padding: 12px 16px;
+  border-radius: 8px;
+  width: 220px;
+  z-index: 99;
+  font-size: 13px;
+  color: #333;
+  text-align: left;
+}
+
+.policy-popup-box p {
+  margin: 6px 0;
+  font-size: 13px;
+  color: #555;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 4px;
+}
+
+.policy-popup-box p:last-of-type {
+  border-bottom: none;
+}
+
+.more-rates-link {
+  color: #007bff;
+  cursor: pointer;
+  display: block;
+  margin-top: 8px;
+  text-align: right;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.more-rates-link:hover {
+  text-decoration: underline;
+}
+/* --- Policy Popup Styling & Hover Underline --- */
+.room-policy-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.room-policy {
+  cursor: pointer;
+  user-select: none;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+/* Hover karne par underline aane ka effect */
+
+
+.policy-popup-box {
+  position: absolute;
+  right: 0;
+  top: 140%;
+  background: #ffffff;
+  border: 1px solid #dcdcdc;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  padding: 14px 16px;
+  border-radius: 10px;
+  width: 240px;
+  z-index: 99;
+  font-size: 13px;
+  color: #333;
+  text-align: left;
+  animation: fadeInPopup 0.2s ease-in-out;
+}
+
+/* Popup open hone ka smooth animation */
+@keyframes fadeInPopup {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.policy-popup-box p {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  color: #444;
+  border-bottom: 1px solid #f1f1f1;
+  padding-bottom: 6px;
+}
+
+.policy-popup-box .last-policy-item {
+  border-bottom: none;
+  margin-bottom: 4px;
+}
+
+.more-rates-link {
+  color: #007bff;
+  cursor: pointer;
+  display: block;
+  margin-top: 6px;
+  text-align: right;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.more-rates-link:hover {
+  text-decoration: underline;
+}
+
+.info-icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;  /* Pehle 20px tha, ab bara kar diya hai */
+  height: 26px; /* Pehle 20px tha, ab bara kar diya hai */
+  background-color: #e9ecef;
+  color: #007bff;
+  border-radius: 50%;
+  font-size: 14px; /* Icon ke andar jo 'ⓘ' text hai uska size bara karne ke liye */
+  font-weight: bold;
+  margin-left: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  vertical-align: middle;
+}
+
+.info-icon-badge:hover {
+  background-color: #007bff;
+  color: #ffffff;
+}
+.policy-popup-box {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background-color: #ffffff;
+  color: #333333;
+  padding: 15px 18px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  border: 1px solid #eaeaea;
+  z-index: 100;
+  min-width: 220px;
+  font-size: 13px;
+  line-height: 1.5;
+  animation: fadeInPopup 0.2s ease-in-out;
+}
+
+/* Popup ke andar ke text ki styling */
+.policy-popup-box p {
+  margin: 0 0 6px 0;
+  color:black;
+}
+.policy-popup-box p:hover {
+
+  background-color: #d1d0d0;
+}
+
+.policy-popup-box .last-policy-item {
+  margin-bottom: 10px;
+  
+}
+
+/* "More rates" link jo popup ke andar hai */
+.policy-popup-box .more-rates-link {
+  color: #007bff;
+  cursor: pointer;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.policy-popup-box .more-rates-link:hover {
+  text-decoration: underline;
+}
+
+/* Chhota sa smooth animation jab popup open ho */
+@keyframes fadeInPopup {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Policy popup ke andar jo "More rates" link hai uski styling */
+.policy-popup-box .more-rates-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: #007bff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.policy-popup-box .more-rates-link:hover {
+  color: #0056b3;
+}
+/* --- Modern Rate Plan Modal Styling --- */
+.rate-plan-modal-box {
+  background: #ffffff;
+  width: 100%;
+  max-width: 550px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  animation: modalFadeIn 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rate-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  border-bottom: 1px solid #eaeaea;
+  background: #f9fafb;
+}
+
+.rate-modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333333;
+}
+
+.rate-modal-close {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #666666;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.rate-modal-close:hover {
+  color: #000000;
+}
+
+.rate-modal-body {
+  padding: 20px 24px;
+  background: #ffffff;
+}
+
+.rate-plan-option-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid #28a745;
+  background: #f4fbf6;
+  padding: 16px 20px;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.rate-plan-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.plan-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.plan-meal {
+  font-size: 13px;
+  color: #555555;
+}
+
+.plan-cancel {
+  font-size: 12px;
+  color: #e67e22;
+  font-weight: 500;
+}
+
+.rate-plan-price-action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.plan-price {
+  font-size: 16px;
+  font-weight: 700;
+  color: #28a745;
+}
+
+.plan-price small {
+  font-size: 11px;
+  color: #777777;
+  font-weight: normal;
+}
+
+.select-plan-btn {
+  background-color: #28a745;
+  color: #ffffff;
+  border: none;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.select-plan-btn:hover {
+  background-color: #218838;
+}
+
+/* Policy popup ke andar wala "More rates" link styling */
+.policy-popup-box .more-rates-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: #007bff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.policy-popup-box .more-rates-link:hover {
+  color: #0056b3;
+}
+/* --- Modern Multiple Rate Plans Modal Styling --- */
+.rate-plan-modal-box {
+  background: #ffffff;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  animation: modalFadeIn 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  max-height: 85vh;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rate-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  border-bottom: 1px solid #eaeaea;
+  background: #f9fafb;
+}
+
+.rate-modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333333;
+}
+
+.rate-modal-close {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #666666;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.rate-modal-close:hover {
+  color: #000000;
+}
+
+.rate-modal-body {
+  padding: 20px 24px;
+  background: #ffffff;
+  overflow-y: auto;
+  max-height: calc(85vh - 70px);
+}
+
+.rate-plan-option-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #e0e0e0;
+  background: #fdfdfd;
+  padding: 16px 20px;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.rate-plan-option-card:hover {
+  border-color: #28a745;
+  background: #f4fbf6;
+}
+
+.selected-plan-card {
+  border: 2px solid #28a745;
+  background: #f4fbf6;
+}
+
+.rate-plan-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 65%;
+}
+
+.plan-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.plan-meal {
+  font-size: 13px;
+  color: #555555;
+}
+
+.plan-cancel {
+  font-size: 12px;
+  color: #e67e22;
+  font-weight: 500;
+}
+
+.rate-plan-price-action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.plan-price {
+  font-size: 16px;
+  font-weight: 700;
+  color: #28a745;
+}
+
+.plan-price small {
+  font-size: 11px;
+  color: #777777;
+  font-weight: normal;
+}
+
+.select-plan-btn {
+  background-color: #f1f2f6;
+  color: #333333;
+  border: 1px solid #dcdde1;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.select-plan-btn:hover {
+  background-color: #28a745;
+  color: #ffffff;
+  border-color: #28a745;
+}
+
+.btn-selected {
+  background-color: #28a745 !important;
+  color: #ffffff !important;
+  border-color: #28a745 !important;
+}
+
+/* Policy popup ke andar wala "More rates" link styling */
+.policy-popup-box .more-rates-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: #007bff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.policy-popup-box .more-rates-link:hover {
+  color: #0056b3;
+}
+

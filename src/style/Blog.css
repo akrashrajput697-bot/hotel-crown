@@ -1,0 +1,451 @@
+/* Blog Page Styles */
+.blog-page {
+  font-family: inherit;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+/* Hero Section */
+.blog-hero {
+  background: url('https://hotelcrowncp.com/assets/images/banner/banner-img.webp') no-repeat center center/cover;
+  height: 400px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.blog-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blog-hero-content {
+  color: #ffffff;
+  padding: 0 20px;
+  text-align: left;
+  margin-left: -490px;
+  margin-bottom: 45px;
+}
+
+.blog-hero-content h1 {
+  font-size: 45px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  letter-spacing: 0.5px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.blog-hero-content h5 {
+  color: #d4af37;
+  font-size: 14px;
+  margin-bottom: -19px;
+}
+
+.blog-hero-content p {
+  font-size: 17px;
+  color: #e0e0e0;
+}
+
+/* Featured Blog Section */
+.featured-blog-section {
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.blog-container {
+  width: 100%;
+  max-width: 1100px;
+}
+
+.featured-blog-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.featured-blog-card:hover {
+  transform: translateY(-5px);
+}
+
+.featured-blog-img {
+  flex: 1;
+  min-height: 280px;
+}
+
+.featured-blog-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.featured-blog-content {
+  flex: 1;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.blog-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: #666666;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* Featured Blog Title Link Color Fixed to Black */
+.featured-blog-content h2 a, 
+.featured-blog-content h2 a:visited {
+  color: #000000 !important;
+  text-decoration: none;
+}
+
+.featured-blog-content h2 a:hover {
+  color: #10b981 !important;
+}
+
+.featured-blog-content h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+
+.featured-blog-content p {
+  font-size: 14px;
+  color: #555555;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.blog-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #eee;
+  padding-top: 18px;
+}
+
+.blog-date {
+  font-size: 13px;
+  color: #777777;
+}
+
+.read-article-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #10b981;
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.read-article-btn:hover {
+  background-color: #059669;
+}
+
+.read-article-btn .arrow {
+  font-size: 12px;
+}
+
+/* Latest Articles Grid Section */
+.latest-articles-section {
+  padding: 20px 20px 80px 20px;
+}
+
+.latest-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 30px;
+}
+
+.small-sub-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #777;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.latest-header-row h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.stories-count {
+  font-size: 13px;
+  color: #666;
+}
+
+/* Articles Grid */
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.article-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.article-card:hover {
+  transform: translateY(-5px);
+}
+
+.article-img-box {
+  position: relative;
+  height: 200px;
+}
+
+.article-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.article-date-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #333;
+}
+
+.article-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.article-tag {
+  font-size: 10px;
+  font-weight: 700;
+  color: #888;
+  letter-spacing: 0.8px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Article Grid Title Link Color */
+.article-content h3 a, 
+.article-content h3 a:visited {
+  color: #1a1a1a !important;
+  text-decoration: none;
+}
+
+.article-content h3 a:hover {
+  color: #10b981 !important;
+}
+
+.article-content h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.article-content p {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.article-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 15px;
+  margin-top: auto;
+}
+
+.read-more-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+.read-more-link:hover {
+  color: #10b981;
+}
+
+.read-more-icon-btn {
+  width: 28px;
+  height: 28px;
+  background-color: #10b981;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 11px;
+  transition: background 0.2s;
+}
+
+.read-more-icon-btn:hover {
+  background-color: #059669;
+}
+
+/* --- Universal Responsive Code & Media Queries --- */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Tablets aur Medium screens ke liye (Max Width: 992px) */
+@media screen and (max-width: 992px) {
+  .container, 
+  .blog-container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  .articles-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Mobile screens ke liye (Max Width: 768px) */
+@media screen and (max-width: 768px) {
+  /* Headings aur text size ko mobile friendly banana */
+  h1 {
+    font-size: 26px !important;
+    line-height: 1.3 !important;
+  }
+  
+  h2 {
+    font-size: 22px !important;
+  }
+
+  p {
+    font-size: 14px !important;
+  }
+
+  /* Blog Hero Fixes for Mobile */
+  .blog-hero {
+    height: 320px !important;
+  }
+
+  .blog-hero-overlay {
+    padding: 0 15px !important;
+    justify-content: center !important;
+  }
+
+  .blog-hero-content {
+    margin-left: 0 !important;
+    margin-bottom: 0 !important;
+    text-align: center !important;
+    padding: 0 !important;
+  }
+
+  .blog-hero-content h1 {
+    font-size: 28px !important;
+    text-align: center !important;
+  }
+
+  .blog-hero-content h5 {
+    text-align: center !important;
+    margin-bottom: 8px !important;
+  }
+
+  .blog-hero-content p {
+    text-align: center !important;
+  }
+
+  /* Featured Blog Card Stack */
+  .featured-blog-card {
+    flex-direction: column !important;
+  }
+  
+  .featured-blog-img {
+    height: 220px !important;
+    flex: none !important;
+  }
+  
+  .featured-blog-content {
+    padding: 20px !important;
+  }
+
+  /* Articles Grid 1 Column */
+  .articles-grid {
+    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* Sections ki padding kam karna */
+  section {
+    padding: 30px 15px !important;
+  }
+}
+/* Keyframes for Blog Hero Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.blog-hero-content h5 {
+  animation: fadeInUp 0.8s ease-out 0s forwards;
+  opacity: 0;
+}
+
+.blog-hero-content h1 {
+  animation: fadeInUp 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.blog-hero-content p {
+  animation: fadeInUp 0.8s ease-out 0.4s forwards;
+  opacity: 0;
+}

@@ -1,0 +1,389 @@
+/* Regal Footer Main Container */
+.regal-footer {
+  background-color: #051b02;
+  color: #ffffff;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Screen reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* ==========================================================================
+   Comfort & Convenience Section (white banner inside footer)
+   ========================================================================== */
+.footer-convenience-section {
+  background-color: #ffffff;
+  color: #333333;
+  padding: 80px 20px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.convenience-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.convenience-header {
+  margin-bottom: 50px;
+  animation: conv-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.convenience-kicker {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #d4af37;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.convenience-header h3 {
+  font-size: 36px;
+  font-weight: 400;
+  margin: 0 0 15px;
+  color: #1a1a1a;
+}
+
+.convenience-header p {
+  font-size: 15px;
+  color: #666666;
+  max-width: 750px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* 6-column grid: 3 cards on top, 2 centered cards below (no lonely card) */
+.convenience-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 30px;
+  text-align: left;
+}
+
+.convenience-card {
+  grid-column: span 2;
+  background-color: #faf8f5;
+  padding: 30px 25px;
+  border-radius: 8px;
+  border: 1px solid #eee6de;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  animation: conv-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.convenience-card:nth-child(4) { grid-column: 2 / span 2; }
+.convenience-card:nth-child(5) { grid-column: 4 / span 2; }
+
+.convenience-card:nth-child(2) { animation-delay: 0.12s; }
+.convenience-card:nth-child(3) { animation-delay: 0.24s; }
+.convenience-card:nth-child(4) { animation-delay: 0.36s; }
+.convenience-card:nth-child(5) { animation-delay: 0.48s; }
+
+.convenience-card:hover {
+  transform: translateY(-5px);
+  border-color: #d4af37;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Icon: hover par ek baar poora chakkar */
+.convenience-icon-box {
+  display: inline-flex;
+  color: #4A1525;
+  margin-bottom: 20px;
+}
+
+.convenience-icon-box svg {
+  display: block;
+  /* page par aate waqt ek baar ghoom kar aata hai */
+  animation: conv-icon-spin-in 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s backwards;
+}
+
+.convenience-card:nth-child(2) .convenience-icon-box svg { animation-delay: 0.45s; }
+.convenience-card:nth-child(3) .convenience-icon-box svg { animation-delay: 0.6s; }
+.convenience-card:nth-child(4) .convenience-icon-box svg { animation-delay: 0.75s; }
+.convenience-card:nth-child(5) .convenience-icon-box svg { animation-delay: 0.9s; }
+
+.convenience-card:hover .convenience-icon-box {
+  animation: conv-icon-spin 0.45s ease-out 1 !important;
+}
+
+.convenience-card h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 10px;
+  color: #222222;
+}
+
+.convenience-card p {
+  font-size: 13px;
+  color: #666666;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Main Footer Links & Newsletter
+   ========================================================================== */
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 70px 20px 30px 20px;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.footer-brand-col {
+  flex: 1;
+  min-width: 280px;
+}
+
+.footer-logo {
+  font-size: 24px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.footer-tagline {
+  font-size: 14px;
+  color: #e0d0d5;
+  line-height: 1.6;
+  max-width: 380px;
+  margin: 0;
+}
+
+.footer-newsletter-col {
+  flex: 1;
+  min-width: 280px;
+}
+
+.footer-newsletter-col h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.footer-newsletter-col p {
+  font-size: 13px;
+  color: #e0d0d5;
+  margin-bottom: 20px;
+}
+
+.newsletter-form {
+  display: flex;
+  max-width: 400px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.newsletter-form input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 12px 15px;
+  color: #ffffff;
+  font-size: 13px;
+  outline: none;
+}
+
+.newsletter-form input::placeholder {
+  color: #bfa5ab;
+}
+
+.newsletter-form button {
+  background-color: #ffffff;
+  color: #4A1525;
+  border: none;
+  padding: 0 20px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.newsletter-form button:hover {
+  background-color: #f0f0f0;
+}
+
+/* Footer Links Grid */
+.footer-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  padding: 50px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.footer-links-col h5 {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.footer-links-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links-col ul li {
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #e0d0d5;
+}
+
+.footer-links-col ul li a {
+  color: #e0d0d5;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links-col ul li a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.footer-contact-info li {
+  margin-bottom: 10px;
+}
+
+/* Social Icons */
+.footer-social-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.footer-social-icons a:hover {
+  background-color: #ffffff;
+  color: #4A1525;
+}
+
+.footer-social-icons a:hover svg {
+  animation: conv-icon-spin 0.4s ease-out 1;
+}
+
+/* Footer Copyright & Legal */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding-top: 30px;
+  font-size: 13px;
+  color: #d0b8be;
+}
+
+.footer-legal-links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.footer-legal-links a {
+  color: #d0b8be;
+  text-decoration: none;
+}
+
+.footer-legal-links a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.footer-legal-links span {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+@keyframes conv-fade-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes conv-icon-spin-in {
+  from { opacity: 0; transform: rotate(-360deg) scale(0); }
+  to   { opacity: 1; transform: rotate(0deg) scale(1); }
+}
+
+@keyframes conv-icon-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 960px) {
+  .convenience-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .convenience-card,
+  .convenience-card:nth-child(4),
+  .convenience-card:nth-child(5) {
+    grid-column: auto;
+  }
+  /* 5th card akela ho to beech mein */
+  .convenience-card:nth-child(5) {
+    grid-column: 1 / -1;
+    width: calc(50% - 12px);
+    justify-self: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .convenience-header h3 { font-size: 28px; }
+  .convenience-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .convenience-card:nth-child(5) {
+    grid-column: auto;
+    width: 100%;
+  }
+  .footer-convenience-section { padding: 60px 20px; }
+}

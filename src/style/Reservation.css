@@ -1,0 +1,315 @@
+.reservation-page-wrapper {
+  background-color: #f8fafc;
+  min-height: 100vh;
+  padding-bottom: 50px;
+  font-family: sans-serif;
+}
+
+/* Hero Section */
+.reservation-hero-section {
+  position: relative;
+  background: url('https://hotelcrowncp.com/assets/images/banner/banner-img.webp') no-repeat center center/cover;
+  padding: 60px 20px;
+  text-align: center;
+  color: white;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.reservation-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.reservation-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.reservation-hero-content h1 {
+  margin: 0 0 10px 0;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.reservation-hero-content p {
+  margin: 0;
+  font-size: 16px;
+  color: #e2e8f0;
+}
+
+/* Main Container Layout */
+.reservation-main-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+/* Form Section Styling */
+.reservation-form-box {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.reservation-form-box h2 {
+  margin-top: 0;
+  font-size: 22px;
+  color: #1e293b;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 10px;
+}
+
+.reservation-form-box h3 {
+  font-size: 18px;
+  color: #1e293b;
+  margin: 20px 0 10px 0;
+}
+
+.reservation-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.reservation-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.reservation-field-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000000;
+  text-align: left;
+}
+
+/* Input Fields & Placeholders Fix */
+.reservation-input-combined {
+  display: flex;
+  border: 1px solid #3c3d3d;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.reservation-input-combined select,
+.reservation-field-group input,
+.reservation-field-group textarea {
+  border: none;
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  outline: none;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgb(70, 70, 70);
+}
+
+.reservation-input-combined select {
+  background: #f1f5f9 !important;
+  padding: 10px;
+  font-weight: 600;
+  color: #000000 !important;
+  border-right: 1px solid #cbd5e1;
+  width: auto;
+}
+
+.reservation-field-group input,
+.reservation-field-group textarea {
+  padding: 12px;
+}
+
+.reservation-phone-prefix {
+  background: #f1f5f9;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #030303;
+  border-right: 1px solid #cbd5e1;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  white-space: nowrap; /* Is se text ek hi line mein rahega, neeche nahi girega */
+  flex-shrink: 0; /* Is se box apas mein dabega nahi */
+}
+
+/* Placeholders Color Fix */
+.reservation-field-group input::placeholder,
+.reservation-field-group textarea::placeholder {
+  color: #94a3b8 !important;
+  opacity: 1;
+}
+
+.reservation-voucher-btn {
+  background: #1e293b;
+  color: white;
+  border: none;
+  padding: 0 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.reservation-voucher-btn:hover {
+  background: #0f172a;
+}
+
+/* Payment Methods */
+.reservation-payment-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.reservation-payment-card {
+  border: 1px solid #cbd5e1;
+  padding: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.reservation-payment-card.selected-payment {
+  border: 2px solid #16a34a;
+  background: #f0fdf4;
+}
+
+.reservation-payment-card h4 {
+  margin: 0 0 5px 0;
+  color: #1e293b;
+}
+
+.reservation-payment-card p {
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.reservation-terms-group {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #475569;
+}
+
+.reservation-terms-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.reservation-submit-btn {
+  width: 100%;
+  background: #16a34a;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.reservation-submit-btn:hover {
+  background: #15803d;
+}
+
+/* Summary Box Styling */
+.reservation-summary-box {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  position: sticky;
+  top: 20px;
+}
+
+.reservation-summary-box img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.reservation-summary-content {
+  padding: 20px;
+}
+
+.reservation-summary-content h3 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  color: #64748b;
+  letter-spacing: 1px;
+}
+
+.summary-room-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.summary-info-text {
+  font-size: 13px;
+  color: #475569;
+  margin-bottom: 6px;
+}
+
+.mb-space {
+  margin-bottom: 15px !important;
+}
+
+.summary-divider {
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+  margin: 15px 0;
+}
+
+.summary-calc-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #475569;
+}
+
+.total-row {
+  align-items: center;
+  font-weight: bold;
+  color: #1e293b;
+}
+
+.summary-total-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #16a34a;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .reservation-main-container {
+    grid-template-columns: 1fr;
+  }
+  .reservation-form-grid,
+  .reservation-payment-grid {
+    grid-template-columns: 1fr;
+  }
+}

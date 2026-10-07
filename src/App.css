@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden; /* Side scroll ya gap ko rokne ke liye */
+}
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+window.addEventListener('DOMContentLoaded', () => {
+    window.scrollTo(0, 0);
+});/* --- Universal Responsive Code for All CSS Files --- */
+
+/* Images aur sections ko overflow hone se bachane ke liye */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Tablets aur Medium screens ke liye (Max Width: 992px) */
+@media screen and (max-width: 992px) {
+  .container, 
+  .blog-container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+
+/* --- Global Mobile Responsive Rules (Puri Website ke liye) --- */
+@media screen and (max-width: 768px) {
+  /* Sary containers aur sections ko mobile width dena */
+  body, html {
+    overflow-x: hidden;
+  }
+
+  /* Navbar ko mobile par column mein set karna */
+  nav, .navbar, .navbar-header, .nav-container {
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 10px !important;
+  }
+
+  /* Menu links ko wrap karna taake baahir na jayein */
+  .nav-links, .navbar-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 0;
+    margin-top: 5px;
+  }
+
+  /* Sary main containers ki padding kam karna taake screen par fit aayein */
+  .container, .contact-container, .search-main-container, .available-rooms-page {
+    padding: 10px !important;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  /* Forms aur inputs ko mobile par full width karna */
+  input, select, textarea, button {
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  /* Grids aur Flex layouts ko column mein badalna */
+  .contact-card-wrapper, .room-result-card {
+    flex-direction: column !important;
+  }
+}

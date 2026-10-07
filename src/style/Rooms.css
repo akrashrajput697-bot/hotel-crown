@@ -1,0 +1,388 @@
+.rooms-hero {
+    background: url('https://hotelcrowncp.com/assets/images/banner/banner-img.webp') center/cover no-repeat;
+    height: 450px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.rooms-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rooms-hero-content {
+    text-align: left;
+    z-index: 1;
+    max-width: 800px;
+    padding: 0 20px;
+    margin-left: -490px;
+}
+
+.rooms-hero-content h1 {
+    font-size: 45px;
+    margin-bottom: 10px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.rooms-hero-subtitle {
+    color: #d1a153;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 17px;
+    margin-bottom: -10px;
+}
+
+.signature-rooms-section {
+    padding: 60px 20px;
+    background-color: #f7f7f7;
+}
+
+.signature-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.signature-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.signature-header h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #111;
+}
+
+.signature-header p {
+    color: #666;
+    font-size: 14px;
+    max-width: 850px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.rooms-list {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.room-card-horizontal {
+    display: flex;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+/* Image Slider Container */
+.room-img-box {
+    flex: 1;
+    position: relative;
+    min-height: 380px;
+    background-color: #111;
+    overflow: hidden;
+}
+
+.room-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Slider Arrows styling */
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: background 0.3s;
+    z-index: 10;
+}
+
+.slider-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.prev-arrow {
+    left: 15px;
+}
+
+.next-arrow {
+    right: 15px;
+}
+
+/* Dots indicator at bottom center of image */
+.slider-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 10;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: inline-block;
+    transition: background 0.3s;
+}
+
+.active-dot {
+    background-color: #ffffff;
+    width: 10px;
+    height: 10px;
+}
+
+/* Info Section */
+.room-info-box {
+    flex: 1.2;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.room-info-box h3 {
+    font-size: 22px;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+.overview-label {
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.room-info-box p {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.room-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.room-tag-item {
+    background: #eef2f5;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #444;
+}
+
+.amenities-title {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #222;
+}
+
+.room-amenities-grid {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.amenity-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #555;
+    background: #fafafa;
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+/* Bottom Rate Box */
+.room-bottom-rate-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    margin-top: auto;
+}
+
+.best-rate-badge {
+    font-size: 10px;
+    background: #e6f4ea;
+    color: #137333;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.rate-text-info h5 {
+    font-size: 14px;
+    margin: 4px 0 2px;
+    color: #111;
+}
+
+.rate-text-info p {
+    font-size: 11px;
+    color: #888;
+    margin: 0;
+}
+
+.room-book-now-btn {
+    background: #111;
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.room-book-now-btn:hover {
+    background: #d1a153;
+}
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+@media screen and (max-width: 992px) {
+    .container, 
+    .signature-container {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /* Headings aur text size */
+    h1 {
+        font-size: 26px !important;
+        line-height: 1.3 !important;
+    }
+    
+    h2 {
+        font-size: 22px !important;
+    }
+
+    p {
+        font-size: 14px !important;
+    }
+
+    section {
+        padding: 30px 15px !important;
+    }
+
+    /* Rooms Hero Fixes */
+    .rooms-hero-content {
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        text-align: center !important;
+        padding: 0 15px !important;
+        box-sizing: border-box !important;
+    }
+
+    .rooms-hero-subtitle {
+        text-align: center !important;
+    }
+
+    .rooms-hero-content h1 {
+        font-size: 26px !important;
+        text-align: center !important;
+    }
+
+    /* Room Cards Horizontal layout ko mobile par vertical karna */
+    .room-card-horizontal {
+        flex-direction: column !important;
+    }
+
+    .room-img-box {
+        min-height: 250px !important;
+        width: 100% !important;
+    }
+
+    .room-info-box {
+        padding: 20px !important;
+    }
+
+    .room-bottom-rate-box {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 15px !important;
+    }
+
+    .room-book-now-btn {
+        width: 100% !important;
+        text-align: center !important;
+    }
+}
+/* Keyframes for Rooms Hero Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rooms-hero-subtitle {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.rooms-hero-content h1 {
+  animation: fadeInUp 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.rooms-hero-content p {
+  animation: fadeInUp 0.8s ease-out 0.4s forwards;
+  opacity: 0;
+}

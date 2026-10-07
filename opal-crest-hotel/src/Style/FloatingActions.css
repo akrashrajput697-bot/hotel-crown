@@ -1,0 +1,49 @@
+/* ==========================================
+   Floating WhatsApp & Call Action Buttons
+   ================================---------- */
+.floating-actions-container {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.floating-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+}
+
+.floating-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Call Button Styling */
+.call-btn {
+  background-color: #d4af37; /* Gold theme accent */
+  color: #121212;
+}
+
+.call-btn:hover {
+  background-color: #e5be40;
+}
+
+/* WhatsApp Button Styling */
+.whatsapp-btn {
+  background-color: #25d366; /* Official WhatsApp green */
+}
+
+.whatsapp-btn:hover {
+  background-color: #20ba5a;
+}

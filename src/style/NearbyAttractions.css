@@ -1,0 +1,576 @@
+/* Page Wrapper */
+.attractions-page {
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  background-color: #fcfbfa;
+  min-height: 100vh;
+}
+
+/* Hero Section */
+.attractions-hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), 
+              url('https://hotelcrowncp.com/assets/images/banner/banner-img.webp') no-repeat center center/cover;
+  padding: 120px 20px 90px;
+  text-align: center;
+  color: #fff;
+  height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.attractions-hero-overlay {
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.attractions-hero-content {
+  margin-left: -294px;
+  text-align: left;
+  padding: 23px 153px;
+}
+
+.attractions-hero-subtitle {
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #d4af37;
+  margin-bottom: -40px;
+}
+
+.attractions-hero-content h1 {
+  font-size: 45px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  line-height: 1.2;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.attractions-hero-content p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #e0e0e0;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-left: 0px;
+}
+
+/* Main Content Section */
+.attractions-content-section {
+  padding: 80px 20px;
+}
+
+.attractions-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.attractions-header-center {
+  text-align: center;
+  max-width: 850px;
+  margin: 0 auto 50px;
+}
+
+.attractions-small-tag {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #0b462c;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.attractions-header-center h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.attractions-header-center p {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.7;
+}
+
+/* Tabs Grid */
+.attractions-tabs-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.attraction-tab-btn {
+  background-color: #fff;
+  border: 1px solid #dcdcdc;
+  color: #333;
+  padding: 12px 22px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.attraction-tab-btn:hover {
+  border-color: #0b462c;
+  color: #0b462c;
+}
+
+.attraction-tab-btn.active-attraction-tab {
+  background-color: #0b462c;
+  color: #fff;
+  border-color: #0b462c;
+  box-shadow: 0 4px 10px rgba(11, 70, 44, 0.2);
+}
+
+/* Attraction Detail Card */
+.attraction-detail-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  border: 1px solid #eaeaea;
+}
+
+.attraction-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.attraction-text-side {
+  padding: 50px;
+}
+
+.attraction-card-tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #0b462c;
+  background-color: rgba(11, 70, 44, 0.08);
+  padding: 6px 12px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.attraction-text-side h3 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.attraction-desc {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+.attraction-distance-box {
+  background-color: #f9f9f9;
+  border-left: 4px solid #0b462c;
+  padding: 12px 18px;
+  font-size: 14px;
+  color: #444;
+  border-radius: 0 4px 4px 0;
+}
+
+.attraction-distance-box strong {
+  color: #1a1a1a;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.attraction-image-side {
+  height: 100%;
+  min-height: 380px;
+}
+
+.attraction-image-side img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- New Layout Styles for Attraction Details Card --- */
+
+.attraction-main-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eaeaea;
+  padding: 35px;
+}
+
+.attraction-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Media Side (Left) */
+.attraction-media-side {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.attraction-main-img-box {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.attraction-main-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.img-nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.img-nav-arrow:hover {
+  background-color: #0b462c;
+}
+
+.left-arrow {
+  left: 15px;
+}
+
+.right-arrow {
+  right: 15px;
+}
+
+/* Thumbnails Row */
+.attraction-thumbnails-row {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+
+.thumb-box {
+  width: 70px;
+  height: 55px;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  flex-shrink: 0;
+  transition: border-color 0.3s;
+}
+
+.thumb-box:hover, .thumb-box.active-thumb {
+  border-color: #0b462c;
+}
+
+.thumb-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Info Side (Right) */
+.attraction-info-side h3 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 15px;
+}
+
+.attraction-main-desc {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+/* Badges Row */
+.attraction-badges-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.att-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+}
+
+.badge-icon {
+  font-size: 14px;
+}
+
+/* Highlights Section */
+.attraction-highlights-section h4 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 15px;
+}
+
+.highlights-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 20px;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #444;
+}
+
+.green-check {
+  background-color: #0b462c;
+  color: #fff;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+/* Activities 8 Cards Section CSS */
+.activities-grid-section {
+  padding: 80px 20px;
+  background-color: #f9f9f9;
+}
+
+.activities-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.activity-card-item {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.activity-card-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.activity-card-img-container {
+  position: relative;
+  height: 210px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.activity-card-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.activity-card-item:hover .activity-card-img-container img {
+  transform: scale(1.05);
+}
+
+.activity-card-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: rgba(0, 0, 0, 0.65);
+  color: #ffffff;
+  padding: 5px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(4px);
+  text-transform: uppercase;
+}
+
+.activity-card-content {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.activity-card-content h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #222222;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.activity-card-content p {
+  font-size: 14px;
+  color: #666666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* --- Universal Responsive Code & Media Queries --- */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Tablets and Medium Screens */
+@media screen and (max-width: 1024px) {
+  .activities-cards-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .attraction-detail-grid,
+  .attraction-grid-layout {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .attraction-image-side {
+    min-height: 300px;
+    order: -1;
+  }
+
+  .attraction-text-side {
+    padding: 30px;
+  }
+
+  .highlights-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Hero Section Fix for Mobile/Tablet */
+  .attractions-hero {
+    height: auto !important;
+    padding: 80px 15px !important;
+  }
+
+  .attractions-hero-content {
+    margin-left: 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+  }
+
+  .attractions-hero-subtitle {
+    margin-bottom: 10px !important;
+    text-align: center !important;
+  }
+
+  .attractions-hero-content h1 {
+    font-size: 28px !important;
+    text-align: center !important;
+  }
+
+  .attractions-hero-content p {
+    text-align: center !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* Small Mobile Screens */
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 26px !important;
+    line-height: 1.3 !important;
+  }
+  
+  h2 {
+    font-size: 22px !important;
+  }
+
+  p {
+    font-size: 14px !important;
+  }
+
+  section {
+    padding: 30px 15px !important;
+  }
+
+  .attraction-main-card {
+    padding: 20px !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .activities-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+/* Keyframes for Nearby Attractions Hero Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.attractions-hero-subtitle {
+  animation: fadeInUp 0.8s ease-out 0s forwards;
+  opacity: 0;
+}
+
+.attractions-hero-content h1 {
+  animation: fadeInUp 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.attractions-hero-content p {
+  animation: fadeInUp 0.8s ease-out 0.4s forwards;
+  opacity: 0;
+}

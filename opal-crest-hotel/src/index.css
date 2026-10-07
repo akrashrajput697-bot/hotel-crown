@@ -1,0 +1,25 @@
+#root {
+  width: 100%; /* 1126px ki jagah 100% karein taake poori screen cover ho */
+  max-width: 100%;
+  margin: 0;
+  text-align: left; /* Center align ki jagah left align karein */
+  border-inline: none; /* Side borders ko khatam karne ke liye */
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow-x: hidden; /* Extra horizontal scrollbar se bachne ke liye */
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #1a1a1a; /* Ya jo aapka dark background hai */
+}

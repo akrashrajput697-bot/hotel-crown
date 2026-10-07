@@ -1,0 +1,516 @@
+.twin-room-page {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  width: 100%;
+  padding-top: 0;
+}
+
+/* Hero Section */
+.twin-hero {
+  background: url('https://hotelcrowncp.com/assets/images/banner/banner-img.webp') center/cover no-repeat;
+  height: 420px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.twin-hero-overlay {
+  position: absolute;
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex; 
+  align-items: center; 
+  justify-content: flex-start;
+  padding-left: 80px;
+}
+
+.twin-hero-content {
+  z-index: 1;
+  max-width: 750px;
+  text-align: left;
+}
+
+.twin-hero-subtitle {
+  color: #d1a153;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 11px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.twin-hero-content h1 {
+  font-size: 42px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.twin-hero-content p {
+  font-size: 15px;
+  color: #e2e8f0;
+  line-height: 1.6;
+  max-width: 650px;
+}
+
+/* Details Section Layout */
+.twin-details-section {
+  padding: 50px 20px;
+}
+
+.twin-container {
+  max-width: 1350px;
+  margin: 0 auto;
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+/* Left Column Styling */
+.twin-left-col {
+  flex: 3.5;
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.main-active-img-box {
+  width: 100%;
+  height: 380px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.main-active-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Thumbnails */
+.thumbnails-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+
+.thumb-box {
+  width: 85px;
+  height: 60px;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.thumb-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumb-box:hover, .active-thumb {
+  border-color: #d1a153;
+}
+
+/* Quick Tags */
+.twin-quick-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+  background: #f8f9fa;
+  padding: 12px 15px;
+  border-radius: 6px;
+}
+
+/* Right Column: Reserve Card Styling */
+.twin-right-col {
+  flex: 1;
+  position: sticky;
+  top: 20px;
+}
+
+.reserve-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  border: 1px solid #eaeaea;
+}
+
+.reserve-badge {
+  background-color: #f3f4f6;
+  color: #333;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.reserve-card h3 {
+  font-size: 20px;
+  color: #111;
+  margin-bottom: 8px;
+}
+
+.reserve-sub {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.reserve-info-rows {
+  margin-bottom: 20px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #555;
+  padding: 8px 0;
+}
+
+.info-row strong {
+  color: #111;
+}
+
+.reserve-card hr {
+  border: none;
+  border-top: 1px solid #f1f1f1;
+  margin: 0;
+}
+
+.book-this-room-btn {
+  width: 100%;
+  background-color: #111;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-bottom: 15px;
+}
+
+.book-this-room-btn:hover {
+  background-color: #333;
+}
+
+.reserve-note {
+  font-size: 11px;
+  color: #777;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Room Section Blocks Styling */
+.room-section-block {
+  margin-top: 30px;
+}
+
+.room-section-block h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 12px;
+}
+
+.room-section-block p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Section Divider Line */
+.section-divider {
+  border: none;
+  border-top: 1px solid #eaeaea;
+  margin: 25px 0;
+}
+
+/* Room Features Checkmarks Grid */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.feature-item {
+  font-size: 13px;
+  color: #444;
+  font-weight: 500;
+}
+
+/* Amenities Grid & Boxes Styling */
+.amenities-grid-boxes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.amenity-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  padding: 20px 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s ease;
+}
+
+.amenity-box:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+}
+
+.amenity-icon-wrapper {
+  width: 50px;
+  height: 50px;
+  background-color: #eafaf1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.amenity-icon {
+  font-size: 20px;
+}
+
+.amenity-box span:not(.amenity-icon-wrapper):not(.amenity-icon) {
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.4;
+}
+
+/* Other Room Categories Section Styling */
+.other-rooms-section {
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+  width: 100%;
+}
+
+.other-rooms-container {
+  max-width: 1350px;
+  margin: 0 auto;
+}
+
+.other-rooms-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.other-rooms-subtitle {
+  color: #d1a153;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 11px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.other-rooms-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111;
+}
+
+/* Cards Grid */
+.rooms-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.other-room-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eaeaea;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.other-room-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.other-room-img {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.other-room-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.other-room-card:hover .other-room-img img {
+  transform: scale(1.05);
+}
+
+.other-room-info {
+  padding: 20px;
+}
+
+.other-room-info h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 10px;
+}
+
+.other-room-info p {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.view-room-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.view-room-link:hover {
+  color: #d1a153;
+}
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+@media screen and (max-width: 992px) {
+  .amenities-grid-boxes {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .rooms-cards-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  /* Headings aur text size */
+  h1 {
+    font-size: 26px !important;
+    line-height: 1.3 !important;
+  }
+  
+  h2 {
+    font-size: 22px !important;
+  }
+
+  p {
+    font-size: 14px !important;
+  }
+
+  section {
+    padding: 30px 15px !important;
+  }
+
+  /* Twin Hero Fixes (Centered & Fully Responsive) */
+  .twin-hero {
+    justify-content: center !important;
+  }
+
+  .twin-hero-overlay {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    justify-content: center !important;
+  }
+
+  .twin-hero-content {
+    text-align: center !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .twin-hero-content h1 {
+    text-align: center !important;
+  }
+
+  .twin-hero-content p {
+    max-width: 100% !important;
+    text-align: center !important;
+  }
+
+  .twin-hero-subtitle {
+    display: inline-block !important;
+  }
+
+  /* Twin Details Container Column Stack */
+  .twin-container {
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+
+  .twin-left-col,
+  .twin-right-col {
+    width: 100% !important;
+    flex: none !important;
+  }
+
+  .twin-right-col {
+    position: static !important;
+  }
+
+  .main-active-img-box {
+    height: 250px !important;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .amenities-grid-boxes {
+    grid-template-columns: 1fr !important;
+  }
+  .features-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .rooms-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
