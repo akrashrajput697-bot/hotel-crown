@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../Style/Home.css';
 
 const FeatureIcon = ({ type }) => {
@@ -40,6 +41,9 @@ const FeatureIcon = ({ type }) => {
   );
 };
 
+/* Links ko aik jagah rakha hai, taake route badalna ho to sirf yahan badalna pare */
+const featureLinkStyle = { textDecoration: 'none', color: 'inherit' };
+
 function Home() {
   return (
     <>
@@ -61,29 +65,29 @@ function Home() {
             </p>
 
             <div className="about-features" aria-label="Hotel highlights">
-              <div className="feature-item">
+              <Link className="feature-item" to="/rooms" style={featureLinkStyle}>
                 <span className="feature-icon">
                   <FeatureIcon type="suite" />
                 </span>
                 <h3>Luxury Suites</h3>
-              </div>
+              </Link>
 
-              <div className="feature-item">
+              <Link className="feature-item" to="/restaurant" style={featureLinkStyle}>
                 <span className="feature-icon">
                   <FeatureIcon type="dining" />
                 </span>
                 <h3>Fine Dining</h3>
-              </div>
+              </Link>
 
-              <div className="feature-item">
+              <Link className="feature-item" to="/activities#spa" style={featureLinkStyle}>
                 <span className="feature-icon">
                   <FeatureIcon type="wellness" />
                 </span>
                 <h3>Wellness &amp; Spa</h3>
-              </div>
+              </Link>
             </div>
 
-            <a className="about-btn" href="#about-details">
+            <Link className="about-btn" to="/about">
               <span>Discover more</span>
               <svg
                 aria-hidden="true"
@@ -100,7 +104,7 @@ function Home() {
                   strokeWidth="1.5"
                 />
               </svg>
-            </a>
+            </Link>
           </div>
 
           <div className="about-images" aria-label="A look inside The Regal">
