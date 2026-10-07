@@ -180,7 +180,7 @@ function Home() {
               <a className="room-image-link" href="#booking" aria-label="Explore the Deluxe King Room">
                 <img
                   className="room-image"
-                  src="https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=1000"
+                  src="https://api.envoyhotel.com/uploads/1779192349166-Executive_King_Room_(3).jpg"
                   alt="Bright deluxe king room with a comfortable sitting area"
                   loading="lazy"
                 />
@@ -195,7 +195,7 @@ function Home() {
                 <div className="room-price-row">
                   <span className="room-category">Classic comfort</span>
                   <span className="room-price">
-                    <span>From</span> $350<small> / night</small>
+                    <span>From</span>80000 PRK<small> / night</small>
                   </span>
                 </div>
 
@@ -229,7 +229,7 @@ function Home() {
               <a className="room-image-link" href="#booking" aria-label="Explore the Executive Suite">
                 <img
                   className="room-image"
-                  src="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1000"
+                  src="https://www.hotelcrowncp.com/assets/images/rooms/Executive%20grace%20twin/1.webp"
                   alt="Elegant executive suite with a separate lounge area"
                   loading="lazy"
                 />
@@ -244,11 +244,11 @@ function Home() {
                 <div className="room-price-row">
                   <span className="room-category">Extra space</span>
                   <span className="room-price">
-                    <span>From</span> $550<small> / night</small>
+                    <span>From</span> 50000 PRK<small> / night</small>
                   </span>
                 </div>
 
-                <h3 className="room-name">Executive Suite</h3>
+                <h3 className="room-name">Executive Twin Room</h3>
                 <p className="room-details">
                   A separate living area, considered amenities, and panoramic
                   skyline views.
@@ -278,7 +278,7 @@ function Home() {
               <a className="room-image-link" href="#booking" aria-label="Explore the Presidential Penthouse">
                 <img
                   className="room-image"
-                  src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1000"
+                  src="https://api.envoyhotel.com/uploads/1779192683149-Premier_Suite_Room_(2).jpg"
                   alt="Refined penthouse bedroom with warm natural light"
                   loading="lazy"
                 />
@@ -293,11 +293,11 @@ function Home() {
                 <div className="room-price-row">
                   <span className="room-category">The finest stay</span>
                   <span className="room-price">
-                    <span>From</span> $1,200<small> / night</small>
+                    <span>From</span>90000 PRK<small> / night</small>
                   </span>
                 </div>
 
-                <h3 className="room-name">Presidential Penthouse</h3>
+                <h3 className="room-name">Premier Suite Room</h3>
                 <p className="room-details">
                   Our most private escape, with a terrace, personal butler service,
                   and lavish interiors.
@@ -355,7 +355,7 @@ function Home() {
                 <p>
                   Enjoy a rich dining experience at Kublais Den Restaurant, where fresh ingredients, warm hospitality, and scenic surroundings come together. From traditional dishes to continental favourites, our restaurant is perfect for family dinners, group meals, romantic evenings, and relaxing food experiences.
                 </p>
-                <a href="#dining" className="zigzag-btn">Dine With Us</a>
+                <Link to="/restaurant" className="zigzag-btn">Dine With Us</Link>
               </div>
             </div>
 
@@ -372,7 +372,7 @@ function Home() {
                 <p>
                   Stay active during your trip with our modern gym facility, designed for guests who want to maintain their fitness routine while enjoying the views. Equipped for light workouts and daily exercise, our fitness area adds comfort, convenience, and wellness to your stay.
                 </p>
-                <a href="#fitness" className="zigzag-btn">Stay Fit With Us</a>
+                <Link to="/gym" className="zigzag-btn">Stay Fit With Us</Link>
               </div>
             </div>
 
@@ -389,7 +389,7 @@ function Home() {
                 <p>
                   Rejuvenate your mind, body, and soul with our signature therapies and holistic wellness treatments. Let our expert therapists melt away your stress in a tranquil environment designed for complete relaxation and peace.
                 </p>
-                <a href="#spa" className="zigzag-btn">Book a Treatment</a>
+                <Link to="/activities#spa" className="zigzag-btn">Book a Treatment</Link>
               </div>
             </div>
 
@@ -406,7 +406,7 @@ function Home() {
                 <p>
                   Take a refreshing dip in our stunning rooftop infinity pool. Whether you want to swim laps in the morning or watch the sunset over the horizon, our pool area offers an unforgettable, luxurious experience.
                 </p>
-                <a href="#pool" className="zigzag-btn">Explore Pool</a>
+                <Link to="/activities#pool" className="zigzag-btn">Explore Pool</Link>
               </div>
             </div>
 
@@ -423,7 +423,7 @@ function Home() {
                 <p>
                   Add fun to your stay with our indoor snooker facility, perfect for friends, families, and guests looking to relax after a day of sightseeing. Enjoy a friendly game, unwind in a comfortable setting, and make your getaway more entertaining.
                 </p>
-                <a href="#entertainment" className="zigzag-btn">Play &amp; Relax</a>
+                <Link to="/activities#snooker" className="zigzag-btn">Play &amp; Relax</Link>
               </div>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { DateRange } from 'react-date-range';
 import { addDays } from 'date-fns';
 import 'react-date-range/dist/styles.css';
@@ -23,10 +24,26 @@ function Hero() {
     }
   ]);
 
-  const [showCalendar, setShowCalendar] = useState(false);
-  const calendarRef = useRef(null);
+  const navigate = useNavigate();
+  
+  // Counts states
+  const [roomsCount, setRoomsCount] = useState(1);
+  const [adultsCount, setAdultsCount] = useState(1);
+  const [childrenCount, setChildrenCount] = useState(0);
 
-  // 1. Automatically change image every 4 seconds
+  // Toggle states for custom dropdown popups
+  const [showRoomsDropdown, setShowRoomsDropdown] = useState(false);
+  const [showAdultsDropdown, setShowAdultsDropdown] = useState(false);
+  const [showChildrenDropdown, setShowChildrenDropdown] = useState(false);
+
+  const [showCalendar, setShowCalendar] = useState(false);
+  
+  const calendarRef = useRef(null);
+  const popupRef = useRef(null);
+  const roomsRef = useRef(null);
+  const adultsRef = useRef(null);
+  const childrenRef = useRef(null);
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % sliderImages.length);
@@ -34,11 +51,20 @@ function Hero() {
     return () => clearInterval(timer);
   }, []);
 
-  // 2. Close calendar when clicking outside
+  // Close popups when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (calendarRef.current && !calendarRef.current.contains(event.target)) {
         setShowCalendar(false);
+      }
+      if (roomsRef.current && !roomsRef.current.contains(event.target)) {
+        setShowRoomsDropdown(false);
+      }
+      if (adultsRef.current && !adultsRef.current.contains(event.target)) {
+        setShowAdultsDropdown(false);
+      }
+      if (childrenRef.current && !childrenRef.current.contains(event.target)) {
+        setShowChildrenDropdown(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -47,13 +73,22 @@ function Hero() {
     };
   }, []);
 
-  // 3. Toggle calendar and smooth scroll into view
-  const handleToggleCalendar = () => {
-    const willOpen = !showCalendar;
-    setShowCalendar(willOpen);
-    if (willOpen && calendarRef.current) {
-      calendarRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  useEffect(() => {
+    if (showCalendar && popupRef.current) {
+      popupRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
+  }, [showCalendar]);
+
+  const handleCheck = () => {
+    navigate('/availability', {
+      state: {
+        startDate: state[0].startDate,
+        endDate: state[0].endDate,
+        rooms: `${roomsCount} ${roomsCount === 1 ? 'Room' : 'Rooms'}`,
+        adults: `${adultsCount} ${adultsCount === 1 ? 'Adult' : 'Adults'}`,
+        children: `${childrenCount} ${childrenCount === 1 ? 'Child' : 'Children'}`,
+      },
+    });
   };
 
   const formatDate = (date) => {
@@ -82,19 +117,19 @@ function Hero() {
         {/* Booking Bar */}
         <div className="hero-booking-bar">
           
-          {/* Check-In & Check-Out Field with Ref for Outside Click & Scroll */}
+          {/* Check-In & Check-Out */}
           <div className="booking-field date-picker-box" style={{ position: 'relative' }} ref={calendarRef}>
             <label>CHECK-IN & CHECK-OUT</label>
             <input
               type="text"
               readOnly
               value={`${formatDate(state[0].startDate)} - ${formatDate(state[0].endDate)}`}
-              onClick={handleToggleCalendar}
+              onClick={() => setShowCalendar(prev => !prev)}
               className="custom-date-input"
             />
 
             {showCalendar && (
-              <div className="dark-calendar-popup">
+              <div className="dark-calendar-popup" ref={popupRef}>
                 <DateRange
                   onChange={item => setState([item.selection])}
                   moveRangeOnFirstSelection={false}
@@ -108,34 +143,79 @@ function Hero() {
             )}
           </div>
 
-          <div className="booking-field">
+          {/* Rooms Custom Dropdown with +/- */}
+          <div className="booking-field custom-select-box" style={{ position: 'relative' }} ref={roomsRef}>
             <label>ROOMS</label>
-            <select defaultValue="1 Room">
-              <option value="1 Room">1 Room</option>
-              <option value="2 Rooms">2 Rooms</option>
-              <option value="Suite">Suite</option>
-            </select>
+            <div 
+              className="select-display-box" 
+              onClick={() => setShowRoomsDropdown(prev => !prev)}
+            >
+              {roomsCount} {roomsCount === 1 ? 'Room' : 'Rooms'} ▼
+            </div>
+
+            {showRoomsDropdown && (
+              <div className="counter-popup-menu">
+                <div className="counter-row">
+                  
+                  <div className="counter-btns">
+                    <button type="button" onClick={() => setRoomsCount(prev => Math.max(1, prev - 1))}>-</button>
+                    <span>{roomsCount}</span>
+                    <button type="button" onClick={() => setRoomsCount(prev => prev + 1)}>+</button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
-          <div className="booking-field">
+          {/* Adults Custom Dropdown with +/- */}
+          <div className="booking-field custom-select-box" style={{ position: 'relative' }} ref={adultsRef}>
             <label>ADULTS</label>
-            <select defaultValue="1 Adult">
-              <option value="1 Adult">1 Adult</option>
-              <option value="2 Adults">2 Adults</option>
-              <option value="3 Adults">3 Adults</option>
-            </select>
+            <div 
+              className="select-display-box" 
+              onClick={() => setShowAdultsDropdown(prev => !prev)}
+            >
+              {adultsCount} {adultsCount === 1 ? 'Adult' : 'Adults'} ▼
+            </div>
+
+            {showAdultsDropdown && (
+              <div className="counter-popup-menu">
+                <div className="counter-row">
+                 
+                  <div className="counter-btns">
+                    <button type="button" onClick={() => setAdultsCount(prev => Math.max(1, prev - 1))}>-</button>
+                    <span>{adultsCount}</span>
+                    <button type="button" onClick={() => setAdultsCount(prev => prev + 1)}>+</button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
-          <div className="booking-field">
+          {/* Children Custom Dropdown with +/- */}
+          <div className="booking-field custom-select-box" style={{ position: 'relative' }} ref={childrenRef}>
             <label>CHILDREN</label>
-            <select defaultValue="0 Children">
-              <option value="0 Children">0 Children</option>
-              <option value="1 Child">1 Child</option>
-              <option value="2 Children">2 Children</option>
-            </select>
+            <div 
+              className="select-display-box" 
+              onClick={() => setShowChildrenDropdown(prev => !prev)}
+            >
+              {childrenCount} {childrenCount === 1 ? 'Child' : 'Children'} ▼
+            </div>
+
+            {showChildrenDropdown && (
+              <div className="counter-popup-menu">
+                <div className="counter-row">
+               
+                  <div className="counter-btns">
+                    <button type="button" onClick={() => setChildrenCount(prev => Math.max(0, prev - 1))}>-</button>
+                    <span>{childrenCount}</span>
+                    <button type="button" onClick={() => setChildrenCount(prev => prev + 1)}>+</button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
-          <button className="hero-check-btn">CHECK AVAILABILITY</button>
+          <button className="hero-check-btn" onClick={handleCheck}>CHECK AVAILABILITY</button>
         </div>
       </div>
     </section>

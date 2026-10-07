@@ -13,7 +13,7 @@ function Rooms() {
       category: 'Deluxe Double',
       title: 'Deluxe Double Room',
       description: 'A quiet city sanctuary, dressed in rich neutral textures and thoughtful details.',
-      price: '$180',
+      price: '45000 PRK',
       per: 'PER NIGHT',
       specs: 'Up to 2 guests • One king bed',
       images: [
@@ -32,7 +32,7 @@ function Rooms() {
       category: 'Deluxe Twin',
       title: 'Deluxe Twin Room',
       description: 'Room to settle in, with a separate sitting corner for slow mornings and late evenings.',
-      price: '$265',
+      price: '55000 PRK',
       per: 'PER NIGHT',
       specs: 'Up to 2 guests • One king bed',
       images: [
@@ -47,7 +47,7 @@ function Rooms() {
       category: 'Executive Twin',
       title: 'Executive Twin Room',
       description: 'Spacious and luxurious suite designed for families or extended comfortable stays.',
-      price: '$420',
+      price: '85000 PRK',
       per: 'PER NIGHT',
       specs: 'Up to 4 guests • Two king beds',
       images: [
@@ -61,7 +61,7 @@ function Rooms() {
       category: 'Premier Suite',
       title: 'Premier Suite Room',
       description: 'The ultimate luxury experience with panoramic views and top-tier amenities.',
-      price: '$585',
+      price: '95000 PRK',
       per: 'PER NIGHT',
       specs: 'Up to 5 guests • Multi-room suite',
       images: [
@@ -77,7 +77,7 @@ function Rooms() {
       category: 'Executive King',
       title: 'Executive King Room',
       description: 'Modern king room equipped with plush bedding and contemporary working space.',
-      price: '$210',
+      price: '75000 PRK',
       per: 'PER NIGHT',
       specs: 'Up to 2 guests • One king bed',
       images: [
@@ -94,7 +94,7 @@ function Rooms() {
       category: 'Deluxe Family',
       title: 'Deluxe Family Room',
       description: 'An expansive luxury suite offering supreme comfort, style, and city vistas.',
-      price: '$340',
+      price: '65000 PRK',
       per: 'PER NIGHT',
       specs: 'Up to 3 guests • One king bed',
       images: [
