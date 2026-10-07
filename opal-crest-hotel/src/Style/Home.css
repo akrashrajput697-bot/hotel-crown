@@ -1314,3 +1314,42 @@
     font-size: 2rem;
   }
 }
+/* Mobile & Tablet Responsive Fixes for Rooms Section */
+@media (max-width: 992px) {
+  .regal-rooms-section {
+    padding: 60px 20px !important;
+  }
+  
+  .rooms-title {
+    font-size: 30px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .rooms-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  
+  .rooms-header {
+    margin-bottom: 35px !important;
+  }
+  
+  .rooms-title {
+    font-size: 26px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .regal-rooms-section {
+    padding: 40px 15px !important;
+  }
+  
+  .room-info {
+    padding: 20px !important;
+  }
+  
+  .rooms-title {
+    font-size: 22px !important;
+  }
+}
