@@ -544,3 +544,41 @@
     transform: scale(1);
   }
 }
+/* Responsive Styles for Deluxe Double Page */
+
+@media (max-width: 992px) {
+  .deluxe-double-page .rc-card {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .deluxe-double-page .hero-content {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 20px !important;
+    margin-left: 0 !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+
+  .deluxe-double-page .room-inner-hero h1 {
+    font-size: 2.2rem !important;
+  }
+
+  .deluxe-double-page .room-inner-hero p {
+    font-size: 1rem !important;
+    margin-bottom: 20px !important;
+  }
+
+  .deluxe-double-page .hero-badges {
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .deluxe-double-page .room-inner-hero {
+    height: 50vh !important;
+    min-height: 350px !important;
+  }
+}

@@ -407,3 +407,68 @@
     transition: none;
   }
 }
+/* Responsive Styles for Gallery Page */
+
+@media (max-width: 992px) {
+  .gallery-page .gl-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-page .room-inner-hero h1 {
+    font-size: 2.2rem !important;
+  }
+  
+  .gallery-page .room-inner-hero p {
+    font-size: 1rem !important;
+    padding: 0 15px !important;
+    text-align: center !important;
+  }
+  
+  .gallery-page .hero-content {
+    max-width: 100% !important;
+    padding: 0 15px !important;
+    box-sizing: border-box !important;
+  }
+
+  .gl-tabs {
+    justify-content: center !important;
+    padding: 0 10px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .gallery-page .gl-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .gallery-page .room-inner-hero {
+    height: 50vh !important;
+    min-height: 350px !important;
+  }
+  
+  .gl-tab {
+    padding: 8px 16px !important;
+    font-size: 0.85rem !important;
+  }
+}
+@media (max-width: 768px) {
+  .gallery-page .hero-content {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 20px !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+  }
+
+  .gallery-page .room-inner-hero p {
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+    font-size: 0.9rem !important;
+    width: 100% !important;
+  }
+}

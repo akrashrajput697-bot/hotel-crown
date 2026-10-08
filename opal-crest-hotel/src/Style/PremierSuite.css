@@ -606,3 +606,41 @@
   border-color: var(--rc-gold);
   box-shadow: 0 14px 28px -16px rgba(31, 58, 43, 0.35);
 }
+/* Responsive Styles for Premier Suite Page */
+
+@media (max-width: 992px) {
+  .premier-suite-page .rc-card {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .premier-suite-page .hero-content {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 20px !important;
+    margin-left: 0 !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+
+  .premier-suite-page .room-inner-hero h1 {
+    font-size: 2.2rem !important;
+  }
+
+  .premier-suite-page .room-inner-hero p {
+    font-size: 1rem !important;
+    margin-bottom: 20px !important;
+  }
+
+  .premier-suite-page .hero-badges {
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .premier-suite-page .room-inner-hero {
+    height: 50vh !important;
+    min-height: 350px !important;
+  }
+}

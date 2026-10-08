@@ -47,3 +47,36 @@
 .whatsapp-btn:hover {
   background-color: #20ba5a;
 }
+/* Responsive Styles for Floating Actions */
+
+@media (max-width: 768px) {
+  .floating-actions-container {
+    bottom: 20px;
+    right: 20px;
+    gap: 12px;
+  }
+
+  .floating-btn {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 576px) {
+  .floating-actions-container {
+    bottom: 15px;
+    right: 15px;
+    gap: 10px;
+  }
+
+  .floating-btn {
+    width: 42px;
+    height: 42px;
+  }
+  
+  /* Icons/Text size adjustment if needed */
+  .floating-btn svg, 
+  .floating-btn i {
+    font-size: 1.1rem;
+  }
+}
