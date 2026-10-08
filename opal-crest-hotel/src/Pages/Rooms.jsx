@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import '../Style/Rooms.css';
 import { Crown, Star, ShieldCheck, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -13,7 +14,7 @@ function Rooms() {
       category: 'Deluxe Double',
       title: 'Deluxe Double Room',
       description: 'A quiet city sanctuary, dressed in rich neutral textures and thoughtful details.',
-      price: '45000 PRK',
+      price: '45000 PKR',
       per: 'PER NIGHT',
       specs: 'Up to 2 guests • One king bed',
       images: [
@@ -32,7 +33,7 @@ function Rooms() {
       category: 'Deluxe Twin',
       title: 'Deluxe Twin Room',
       description: 'Room to settle in, with a separate sitting corner for slow mornings and late evenings.',
-      price: '55000 PRK',
+      price: '55000 PKR',
       per: 'PER NIGHT',
       specs: 'Up to 2 guests • One king bed',
       images: [
@@ -47,7 +48,7 @@ function Rooms() {
       category: 'Executive Twin',
       title: 'Executive Twin Room',
       description: 'Spacious and luxurious suite designed for families or extended comfortable stays.',
-      price: '85000 PRK',
+      price: '85000 PKR',
       per: 'PER NIGHT',
       specs: 'Up to 4 guests • Two king beds',
       images: [
@@ -61,7 +62,7 @@ function Rooms() {
       category: 'Premier Suite',
       title: 'Premier Suite Room',
       description: 'The ultimate luxury experience with panoramic views and top-tier amenities.',
-      price: '95000 PRK',
+      price: '95000 PKR',
       per: 'PER NIGHT',
       specs: 'Up to 5 guests • Multi-room suite',
       images: [
@@ -77,7 +78,7 @@ function Rooms() {
       category: 'Executive King',
       title: 'Executive King Room',
       description: 'Modern king room equipped with plush bedding and contemporary working space.',
-      price: '75000 PRK',
+      price: '75000 PKR',
       per: 'PER NIGHT',
       specs: 'Up to 2 guests • One king bed',
       images: [
@@ -93,8 +94,8 @@ function Rooms() {
       id: 6,
       category: 'Deluxe Family',
       title: 'Deluxe Family Room',
-      description: 'An expansive luxury suite offering supreme comfort, style, and city vistas.',
-      price: '65000 PRK',
+      description: 'An expansive luxury hotel suite offering supreme comfort, style, and city vistas.',
+      price: '65000 PKR',
       per: 'PER NIGHT',
       specs: 'Up to 3 guests • One king bed',
       images: [
@@ -133,6 +134,26 @@ function Rooms() {
 
   return (
     <div className="rooms-page">
+      <Helmet>
+        <title>Luxury Rooms & Suites | The Regal Hotel & Residences</title>
+        <meta name="description" content="Explore exquisite 5-star rooms and luxury suites at The Regal. From Deluxe Double to Premier Suites, enjoy top-tier amenities, best price guarantee, and secure booking." />
+        <meta name="keywords" content="luxury rooms, hotel suites, deluxe double room, executive king room, premier suite, hotel booking, 5-star accommodation" />
+        <meta name="author" content="The Regal Hotel & Residences" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://yourdomain.com/rooms" />
+
+        <meta property="og:title" content="Luxury Rooms & Suites | The Regal Hotel & Residences" />
+        <meta property="og:description" content="Explore exquisite 5-star rooms and luxury suites at The Regal. Book your stay for ultimate comfort and elegance." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://yourdomain.com/rooms" />
+        <meta property="og:image" content="https://www.hotelcrowncp.com/assets/images/rooms/deluxe%20double/1.webp" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Luxury Rooms & Suites | The Regal Hotel & Residences" />
+        <meta name="twitter:description" content="Explore exquisite 5-star rooms and luxury suites at The Regal." />
+        <meta name="twitter:image" content="https://www.hotelcrowncp.com/assets/images/rooms/deluxe%20double/1.webp" />
+      </Helmet>
+
       <section className="about-hero">
         <div className="about-hero-content">
           <span className="about-kicker">Accommodations</span>

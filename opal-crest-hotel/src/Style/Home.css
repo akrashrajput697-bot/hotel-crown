@@ -925,6 +925,7 @@
   width: 27px;
   height: 1px;
   background: currentColor;
+   margin-left: -40px;
 }
 
 .testimonials-title {

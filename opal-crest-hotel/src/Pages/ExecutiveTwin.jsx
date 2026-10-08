@@ -1,64 +1,41 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 import '../Style/ExecutiveTwin.css';
 import Footer from '../component/Footer';
 
 const SLIDE_MS = 3000; // har 3 second baad image change
 
-const rooms = [
-  {
-    id: 'corporate-twin-room',
-    name: 'Corporate Twin Room',
-    badge: 'Professional',
-    badgeType: 'calm',
-    desc: 'Two premium twin beds, dual work areas, high-speed connectivity, and soundproof study environment.',
-    guests: 2,
-    available: 6,
-    oldPrice: 'PKR 13,500',
-    price: 'PKR 10,800',
-    images: [
-      'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/1743229/pexels-photo-1743229.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    ],
-    amenities: [
-      '2 Executive Twin Beds',
-      'Dual work desks',
-      'Free fast Wi-Fi',
-      'Soundproof study environment',
-      'Smart LED TV',
-      'Coffee station',
-      'Luxury toiletries',
-      'Daily housekeeping',
-    ],
-  },
-  {
-    id: 'executive-lounge-twin',
-    name: 'Executive Lounge Twin',
-    badge: 'Deluxe Lounge',
-    badgeType: 'sale',
-    desc: 'Includes exclusive lounge access, complimentary afternoon tea, and high floor views with twin configuration.',
-    guests: 2,
-    available: 4,
-    oldPrice: 'PKR 15,500',
-    price: 'PKR 12,400',
-    images: [
-      'https://images.pexels.com/photos/1743229/pexels-photo-1743229.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    ],
-    amenities: [
-      'Lounge access included',
-      'Premium bedding',
-      'Express check-in',
-      'Complimentary afternoon tea',
-      'High floor views',
-      'Smart LED TV',
-      'Coffee station',
-      'Luxury toiletries',
-    ],
-  },
-];
+// Sirf yehi ek room is page par dikhta hai (data Rooms page ke mutabiq)
+const room = {
+  "id": "executive-twin",
+  "name": "Executive Twin Room",
+  "badge": "More room to unwind",
+  "badgeType": "calm",
+  "desc": "Spacious and luxurious suite designed for families or extended comfortable stays.",
+  "guests": 4,
+  "available": 6,
+  "price": "PKR 85,000",
+  "images": [
+    "https://www.hotelcrowncp.com/assets/images/rooms/Executive%20grace%20twin/1.webp",
+    "https://www.hotelcrowncp.com/assets/images/rooms/Executive%20grace%20twin/2.webp"
+  ],
+  "amenities": [
+    "2 Executive Twin Beds",
+    "Dual work desks",
+    "Free fast Wi-Fi",
+    "Soundproof study environment",
+    "Smart LED TV",
+    "Coffee station",
+    "Luxury toiletries",
+    "Daily housekeeping",
+    "Lounge access included",
+    "Premium bedding",
+    "Express check-in",
+    "Complimentary afternoon tea",
+    "High floor views"
+  ]
+};
 
 /* Scroll par card smoothly andar aata hai */
 function useReveal() {
@@ -84,12 +61,15 @@ function useReveal() {
   return [ref, visible];
 }
 
-function RoomCard({ room, reversed }) {
+function RoomCard({ room }) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [ref, visible] = useReveal();
   const total = room.images.length;
 
+  const { addToCart } = useCart();
+
+  // Auto slider: har 3 second. Hover par ruk jata hai.
   useEffect(() => {
     if (paused || total < 2) return;
     const timer = setTimeout(() => {
@@ -101,11 +81,14 @@ function RoomCard({ room, reversed }) {
   const half = Math.ceil(room.amenities.length / 2);
   const cols = [room.amenities.slice(0, half), room.amenities.slice(half)];
 
+  // Add to cart handler function
+  const handleAddToCart = () => {
+    addToCart(room);
+  };
+
   return (
-    <article
-      ref={ref}
-      className={`rc-card ${reversed ? 'rc-reversed' : ''} ${visible ? 'rc-in' : ''}`}
-    >
+    <article ref={ref} className={`rc-card ${visible ? 'rc-in' : ''}`}>
+      {/* Gallery */}
       <div
         className="rc-gallery"
         onMouseEnter={() => setPaused(true)}
@@ -153,6 +136,7 @@ function RoomCard({ room, reversed }) {
         </div>
       </div>
 
+      {/* Details */}
       <div className="rc-details">
         <h2 className="rc-title">{room.name}</h2>
         <p className="rc-desc">{room.desc}</p>
@@ -170,7 +154,6 @@ function RoomCard({ room, reversed }) {
             </strong>
           </div>
           <div className="rc-price">
-            <span className="rc-old">{room.oldPrice}</span>
             <span className="rc-now">
               {room.price}
               <small> / night</small>
@@ -194,8 +177,19 @@ function RoomCard({ room, reversed }) {
           ))}
         </div>
 
-        <div className="rc-actions">
-          <a href="#book" className="rc-btn rc-btn-primary">Book this room</a>
+        <div className="rc-actions" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+          {/* Add to Cart Button */}
+          <button 
+            type="button" 
+            className="rc-btn rc-btn-secondary" 
+            onClick={handleAddToCart}
+          >
+            Add to Cart
+          </button>
+          {/* Reservation page par isi room ke saath le jata hai */}
+          <Link to={`/reservation?room=${room.id}`} className="rc-btn rc-btn-primary">
+            Book now
+          </Link>
         </div>
       </div>
     </article>
@@ -205,7 +199,7 @@ function RoomCard({ room, reversed }) {
 function ExecutiveTwin() {
   return (
     <div className="executive-twin-page">
-      {/* Hero Section (same as before) */}
+      {/* Hero Section (unchanged) */}
       <section className="room-inner-hero" aria-labelledby="hero-title">
         <div className="hero-overlay"></div>
         <div className="hero-content">
@@ -218,13 +212,11 @@ function ExecutiveTwin() {
       <section className="pro-room-section">
         <div className="container">
           <div className="rc-intro">
-            <h2>Explore Our Executive Twin Options</h2>
+            <h2>Explore Our Executive Twin Room</h2>
             <p>Modern productivity meets comfortable separate bedding arrangements.</p>
           </div>
           <div className="rc-list">
-            {rooms.map((room, i) => (
-              <RoomCard key={room.id} room={room} reversed={i % 2 === 1} />
-            ))}
+            <RoomCard room={room} />
           </div>
         </div>
       </section>

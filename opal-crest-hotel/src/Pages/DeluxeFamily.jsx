@@ -1,64 +1,44 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 import '../Style/DeluxeFamily.css';
 import Footer from '../component/Footer';
 
 const SLIDE_MS = 3000; // har 3 second baad image change
 
-const rooms = [
-  {
-    id: 'grand-family-connection',
-    name: 'Grand Family Connection',
-    badge: 'Family Choice',
-    badgeType: 'calm',
-    desc: 'Connected rooms featuring a king bed and two single beds, seating lounge, and two separate bathrooms.',
-    guests: 4,
-    available: 5,
-    oldPrice: 'PKR 20,000',
-    price: 'PKR 16,000',
-    images: [
-      'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/1743229/pexels-photo-1743229.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    ],
-    amenities: [
-      '1 King & 2 Single Beds',
-      '2 Bathrooms',
-      'Kids Play Corner',
-      'Seating lounge',
-      'Dual Smart TVs',
-      'Large family refrigerator',
-      'Kids safe setup',
-      'Espresso station',
-    ],
-  },
-  {
-    id: 'executive-family-haven',
-    name: 'Executive Family Haven',
-    badge: 'Spacious',
-    badgeType: 'sale',
-    desc: 'An expansive suite with a master bedroom, a cozy kids zone, and modern entertainment systems.',
-    guests: 5,
-    available: 3,
-    oldPrice: 'PKR 24,000',
-    price: 'PKR 19,200',
-    images: [
-      'https://images.pexels.com/photos/1743229/pexels-photo-1743229.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    ],
-    amenities: [
-      'Extra large space',
-      'Master bedroom',
-      'Lounge area',
-      'Cozy kids zone',
-      'Complimentary breakfast',
-      'Dual Smart TVs',
-      'Entertainment system',
-      'Espresso station',
-    ],
-  },
-];
+// Sirf yehi ek room is page par dikhta hai (data Rooms page ke mutabiq)
+const room = {
+  "id": "deluxe-family",
+  "name": "Deluxe Family Room",
+  "badge": "Family Choice",
+  "badgeType": "calm",
+  "desc": "An expansive luxury hotel suite offering supreme comfort, style, and city vistas.",
+  "guests": 3,
+  "available": 5,
+  "price": "PKR 65,000",
+  "images": [
+    "https://api.envoyhotel.com/uploads/1779192228389-Deluxe_Family_Room_(5).jpg",
+    "https://api.envoyhotel.com/uploads/1779192293751-Deluxe_Family_Room_(2).jpg",
+    "https://api.envoyhotel.com/uploads/1779192293757-Deluxe_Family_Room_(3).jpg",
+    "https://api.envoyhotel.com/uploads/1779192293761-Deluxe_Family_Room_(5).jpg",
+    "https://api.envoyhotel.com/uploads/1779192293772-Deluxe_Family_Room.jpg"
+  ],
+  "amenities": [
+    "2 Bathrooms",
+    "Kids Play Corner",
+    "Seating lounge",
+    "Dual Smart TVs",
+    "Large family refrigerator",
+    "Kids safe setup",
+    "Espresso station",
+    "Extra large space",
+    "Master bedroom",
+    "Lounge area",
+    "Cozy kids zone",
+    "Complimentary breakfast",
+    "Entertainment system"
+  ]
+};
 
 /* Scroll par card smoothly andar aata hai */
 function useReveal() {
@@ -84,12 +64,15 @@ function useReveal() {
   return [ref, visible];
 }
 
-function RoomCard({ room, reversed }) {
+function RoomCard({ room }) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [ref, visible] = useReveal();
   const total = room.images.length;
 
+  const { addToCart } = useCart();
+
+  // Auto slider: har 3 second. Hover par ruk jata hai.
   useEffect(() => {
     if (paused || total < 2) return;
     const timer = setTimeout(() => {
@@ -101,11 +84,14 @@ function RoomCard({ room, reversed }) {
   const half = Math.ceil(room.amenities.length / 2);
   const cols = [room.amenities.slice(0, half), room.amenities.slice(half)];
 
+  // Add to cart handler function
+  const handleAddToCart = () => {
+    addToCart(room);
+  };
+
   return (
-    <article
-      ref={ref}
-      className={`rc-card ${reversed ? 'rc-reversed' : ''} ${visible ? 'rc-in' : ''}`}
-    >
+    <article ref={ref} className={`rc-card ${visible ? 'rc-in' : ''}`}>
+      {/* Gallery */}
       <div
         className="rc-gallery"
         onMouseEnter={() => setPaused(true)}
@@ -153,6 +139,7 @@ function RoomCard({ room, reversed }) {
         </div>
       </div>
 
+      {/* Details */}
       <div className="rc-details">
         <h2 className="rc-title">{room.name}</h2>
         <p className="rc-desc">{room.desc}</p>
@@ -170,7 +157,6 @@ function RoomCard({ room, reversed }) {
             </strong>
           </div>
           <div className="rc-price">
-            <span className="rc-old">{room.oldPrice}</span>
             <span className="rc-now">
               {room.price}
               <small> / night</small>
@@ -194,8 +180,20 @@ function RoomCard({ room, reversed }) {
           ))}
         </div>
 
-        <div className="rc-actions">
-          <a href="#book" className="rc-btn rc-btn-primary">Book this room</a>
+        <div className="rc-actions" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+          {/* Add to Cart Button */}
+          <button 
+            type="button" 
+            className="rc-btn rc-btn-secondary" 
+            onClick={handleAddToCart}
+          >
+            Add to Cart
+          </button>
+
+          {/* Reservation page par isi room ke saath le jata hai */}
+          <Link to={`/reservation?room=${room.id}`} className="rc-btn rc-btn-primary">
+            Book now
+          </Link>
         </div>
       </div>
     </article>
@@ -205,7 +203,7 @@ function RoomCard({ room, reversed }) {
 function DeluxeFamily() {
   return (
     <div className="deluxe-family-page">
-      {/* Hero Section (same as before) */}
+      {/* Hero Section (unchanged) */}
       <section className="room-inner-hero" aria-labelledby="hero-title">
         <div className="hero-overlay"></div>
         <div className="hero-content">
@@ -218,13 +216,11 @@ function DeluxeFamily() {
       <section className="pro-room-section">
         <div className="container">
           <div className="rc-intro">
-            <h2>Explore Our Family Rooms</h2>
+            <h2>Explore Our Family Room</h2>
             <p>Extra room to unwind, relax, and make memorable moments together.</p>
           </div>
           <div className="rc-list">
-            {rooms.map((room, i) => (
-              <RoomCard key={room.id} room={room} reversed={i % 2 === 1} />
-            ))}
+            <RoomCard room={room} />
           </div>
         </div>
       </section>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { Helmet } from 'react-helmet-async';
 import '../Style/Gallery.css';
 import Footer from '../component/Footer';
 
@@ -61,6 +62,26 @@ function Gallery() {
 
   return (
     <div className="gallery-page">
+      <Helmet>
+        <title>Photo Gallery & Rooms | The Regal Hotel & Residences</title>
+        <meta name="description" content="Explore the photo gallery of The Regal Hotel & Residences in Islamabad. Take a virtual tour of our luxury rooms, fine dining restaurants, swimming pool, and resort facilities." />
+        <meta name="keywords" content="hotel gallery, photos, luxury rooms, restaurant, swimming pool, islamabad hotel, the regal residences" />
+        <meta name="author" content="The Regal Hotel & Residences" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://yourdomain.com/gallery" />
+
+        <meta property="og:title" content="Photo Gallery & Rooms | The Regal Hotel & Residences" />
+        <meta property="og:description" content="Take a virtual tour of our luxury rooms, fine dining restaurants, and resort facilities at The Regal Hotel & Residences." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://yourdomain.com/gallery" />
+        <meta property="og:image" content="https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=1000" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Photo Gallery & Rooms | The Regal Hotel & Residences" />
+        <meta name="twitter:description" content="Explore the photo gallery of The Regal Hotel & Residences in Islamabad." />
+        <meta name="twitter:image" content="https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=1000" />
+      </Helmet>
+
       {/* Hero */}
       <section className="room-inner-hero" aria-labelledby="hero-title">
         <div className="hero-overlay"></div>

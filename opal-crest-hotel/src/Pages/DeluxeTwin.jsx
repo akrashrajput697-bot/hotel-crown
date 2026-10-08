@@ -1,64 +1,40 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 import '../Style/DeluxeTwin.css';
 import Footer from '../component/Footer';
 
 const SLIDE_MS = 3000; // har 3 second baad image change
 
-const rooms = [
-  {
-    id: 'classic-twin-beds',
-    name: 'Classic Twin Beds',
-    badge: 'Best Value',
-    badgeType: 'sale',
-    desc: 'Two comfortable twin beds featuring premium mattresses, workstation setup, and elegant wooden paneling.',
-    guests: 2,
-    available: 8,
-    oldPrice: 'PKR 11,000',
-    price: 'PKR 8,800',
-    images: [
-      'https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/1743229/pexels-photo-1743229.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    ],
-    amenities: [
-      '2 Twin Beds',
-      'Premium mattresses',
-      'Executive work desk',
-      'High-speed Wi-Fi',
-      '55" Smart TV',
-      'Climate control',
-      'Organic toiletries',
-      'Tea/coffee maker',
-    ],
-  },
-  {
-    id: 'scenic-twin-suite',
-    name: 'Scenic Twin Suite',
-    badge: 'Balcony View',
-    badgeType: 'calm',
-    desc: 'Spacious twin room offering a private balcony with panoramic views of the city landmarks.',
-    guests: 2,
-    available: 5,
-    oldPrice: 'PKR 13,000',
-    price: 'PKR 10,400',
-    images: [
-      'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/1743229/pexels-photo-1743229.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    ],
-    amenities: [
-      '2 Twin Beds',
-      'Private balcony',
-      'Panoramic city view',
-      'Mini bar included',
-      '55" Smart TV',
-      'Climate control',
-      'Organic toiletries',
-      'Tea/coffee maker',
-    ],
-  },
-];
+// Sirf yehi ek room is page par dikhta hai (data Rooms page ke mutabiq)
+const room = {
+  "id": "deluxe-twin",
+  "name": "Deluxe Twin Room",
+  "badge": "Best Value",
+  "badgeType": "calm",
+  "desc": "Room to settle in, with a separate sitting corner for slow mornings and late evenings.",
+  "guests": 2,
+  "available": 8,
+  "price": "PKR 55,000",
+  "images": [
+    "https://www.hotelcrowncp.com/assets/images/rooms/deluxe%20twin/1.webp",
+    "https://www.hotelcrowncp.com/assets/images/rooms/deluxe%20twin/2.webp",
+    "https://www.hotelcrowncp.com/assets/images/rooms/deluxe%20twin/3.webp"
+  ],
+  "amenities": [
+    "2 Twin Beds",
+    "Premium mattresses",
+    "Executive work desk",
+    "High-speed Wi-Fi",
+    "55\" Smart TV",
+    "Climate control",
+    "Organic toiletries",
+    "Tea/coffee maker",
+    "Private balcony",
+    "Panoramic city view",
+    "Mini bar included"
+  ]
+};
 
 /* Scroll par card smoothly andar aata hai */
 function useReveal() {
@@ -84,12 +60,15 @@ function useReveal() {
   return [ref, visible];
 }
 
-function RoomCard({ room, reversed }) {
+function RoomCard({ room }) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [ref, visible] = useReveal();
   const total = room.images.length;
 
+  const { addToCart } = useCart();
+
+  // Auto slider: har 3 second. Hover par ruk jata hai.
   useEffect(() => {
     if (paused || total < 2) return;
     const timer = setTimeout(() => {
@@ -101,11 +80,13 @@ function RoomCard({ room, reversed }) {
   const half = Math.ceil(room.amenities.length / 2);
   const cols = [room.amenities.slice(0, half), room.amenities.slice(half)];
 
+  const handleAddToCart = () => {
+    addToCart(room);
+  };
+
   return (
-    <article
-      ref={ref}
-      className={`rc-card ${reversed ? 'rc-reversed' : ''} ${visible ? 'rc-in' : ''}`}
-    >
+    <article ref={ref} className={`rc-card ${visible ? 'rc-in' : ''}`}>
+      {/* Gallery */}
       <div
         className="rc-gallery"
         onMouseEnter={() => setPaused(true)}
@@ -153,6 +134,7 @@ function RoomCard({ room, reversed }) {
         </div>
       </div>
 
+      {/* Details */}
       <div className="rc-details">
         <h2 className="rc-title">{room.name}</h2>
         <p className="rc-desc">{room.desc}</p>
@@ -170,7 +152,6 @@ function RoomCard({ room, reversed }) {
             </strong>
           </div>
           <div className="rc-price">
-            <span className="rc-old">{room.oldPrice}</span>
             <span className="rc-now">
               {room.price}
               <small> / night</small>
@@ -194,8 +175,20 @@ function RoomCard({ room, reversed }) {
           ))}
         </div>
 
-        <div className="rc-actions">
-          <a href="#book" className="rc-btn rc-btn-primary">Book this room</a>
+        <div className="rc-actions" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+          {/* Add to Cart Button */}
+          <button 
+            type="button" 
+            className="rc-btn rc-btn-secondary" 
+            onClick={handleAddToCart}
+          >
+            Add to Cart
+          </button>
+
+          {/* Reservation page par isi room ke saath le jata hai */}
+          <Link to={`/reservation?room=${room.id}`} className="rc-btn rc-btn-primary">
+            Book now
+          </Link>
         </div>
       </div>
     </article>
@@ -205,7 +198,7 @@ function RoomCard({ room, reversed }) {
 function DeluxeTwin() {
   return (
     <div className="deluxe-twin-page">
-      {/* Hero Section (same as before) */}
+      {/* Hero Section (unchanged) */}
       <section className="room-inner-hero" aria-labelledby="hero-title">
         <div className="hero-overlay"></div>
         <div className="hero-content">
@@ -218,13 +211,11 @@ function DeluxeTwin() {
       <section className="pro-room-section">
         <div className="container">
           <div className="rc-intro">
-            <h2>Explore Our Deluxe Twin Options</h2>
-            <p>Thoughtfully laid out rooms equipped with high-end twin beds and modern styling.</p>
+            <h2>Explore Our Deluxe Twin Room</h2>
+            <p>Thoughtfully laid out room equipped with high-end twin beds and modern styling.</p>
           </div>
           <div className="rc-list">
-            {rooms.map((room, i) => (
-              <RoomCard key={room.id} room={room} reversed={i % 2 === 1} />
-            ))}
+            <RoomCard room={room} />
           </div>
         </div>
       </section>

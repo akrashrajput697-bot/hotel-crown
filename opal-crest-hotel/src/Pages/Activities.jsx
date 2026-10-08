@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Helmet } from 'react-helmet-async';
 import '../Style/Activities.css';
 import Footer from '../component/Footer';
 
@@ -260,6 +261,26 @@ function ActivityBlock({ a, reversed }) {
 function Activities() {
   return (
     <div className="activities-page">
+      <Helmet>
+        <title>Leisure Activities, Spa & Pool | The Regal Hotel & Residences</title>
+        <meta name="description" content="Explore leisure activities at The Regal in Islamabad, featuring a snooker lounge, rooftop swimming pool, and relaxing spa treatments." />
+        <meta name="keywords" content="hotel activities, snooker lounge, rooftop swimming pool, spa centre, massage, islamabad hotel, the regal residences" />
+        <meta name="author" content="The Regal Hotel & Residences" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://yourdomain.com/activities" />
+
+        <meta property="og:title" content="Leisure Activities, Spa & Pool | The Regal Hotel & Residences" />
+        <meta property="og:description" content="Play snooker, swim in the rooftop pool, or unwind at our spa centre during your stay at The Regal Hotel." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://yourdomain.com/activities" />
+        <meta property="og:image" content="https://images.pexels.com/photos/15473886/pexels-photo-15473886.jpeg?auto=compress&cs=tinysrgb&w=1000" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Leisure Activities, Spa & Pool | The Regal Hotel & Residences" />
+        <meta name="twitter:description" content="Discover our snooker lounge, swimming pool, and luxury spa treatments in Islamabad." />
+        <meta name="twitter:image" content="https://images.pexels.com/photos/15473886/pexels-photo-15473886.jpeg?auto=compress&cs=tinysrgb&w=1000" />
+      </Helmet>
+
       {/* Hero */}
       <section className="room-inner-hero" aria-labelledby="hero-title">
         <div className="hero-overlay"></div>

@@ -10,6 +10,20 @@ function About() {
         <title>About Us | The Regal - Luxury Hotel &amp; Residences</title>
         <meta name="description" content="Discover the story, vision, and core values of The Regal. Delivering a legacy of timeless elegance, 5-star luxury, and unmatched premium hospitality for over 15 years." />
         <meta name="keywords" content="About The Regal, luxury hotel legacy, hotel history, 5-star luxury hotel, premium hospitality, royal suites, hotel vision and mission" />
+        <meta name="author" content="The Regal Hotel & Residences" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://yourdomain.com/about" />
+
+        <meta property="og:title" content="About Us | The Regal - Luxury Hotel & Residences" />
+        <meta property="og:description" content="Discover the story, vision, and core values of The Regal. Delivering a legacy of timeless elegance and 5-star luxury." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://yourdomain.com/about" />
+        <meta property="og:image" content="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About Us | The Regal - Luxury Hotel & Residences" />
+        <meta name="twitter:description" content="Discover the story, vision, and core values of The Regal." />
+        <meta name="twitter:image" content="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80" />
       </Helmet>
 
       <div className="about-page">

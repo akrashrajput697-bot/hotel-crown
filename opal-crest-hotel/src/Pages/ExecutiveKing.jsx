@@ -1,64 +1,45 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 import '../Style/ExecutiveKing.css';
 import Footer from '../component/Footer';
 
 const SLIDE_MS = 3000; // har 3 second baad image change
 
-const rooms = [
-  {
-    id: 'business-executive-king',
-    name: 'Business Executive King',
-    badge: 'Business Best',
-    badgeType: 'calm',
-    desc: 'Features an ergonomic workstation, plush king-sized bed, ambient lighting, and high-speed secure networking.',
-    guests: 2,
-    available: 7,
-    oldPrice: 'PKR 14,500',
-    price: 'PKR 11,600',
-    images: [
-      'https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/1743229/pexels-photo-1743229.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    ],
-    amenities: [
-      '1 Super King bed',
-      'Ergonomic work desk',
-      'Lounge access',
-      'Ambient lighting',
-      'High-speed secure networking',
-      'Executive desk setup',
-      'Private mini bar',
-      'Digital safe',
-    ],
-  },
-  {
-    id: 'panoramic-king-suite',
-    name: 'Panoramic King Suite',
-    badge: 'Top Floor',
-    badgeType: 'sale',
-    desc: 'Located on the top floor with stunning horizon views, walk-in closet, and rainfall shower spa bathroom.',
-    guests: 2,
-    available: 4,
-    oldPrice: 'PKR 16,500',
-    price: 'PKR 13,200',
-    images: [
-      'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/1743229/pexels-photo-1743229.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    ],
-    amenities: [
-      'Top floor view',
-      'Walk-in closet',
-      'Premium spa access',
-      'Rainfall shower bathroom',
-      'Private mini bar',
-      'Pressing service',
-      'Digital safe',
-      'Daily housekeeping',
-    ],
-  },
-];
+// Sirf yehi ek room is page par dikhta hai (data Rooms page ke mutabiq)
+const room = {
+  "id": "executive-king",
+  "name": "Executive King Room",
+  "badge": "Guest favourite",
+  "badgeType": "calm",
+  "desc": "Modern king room equipped with plush bedding and contemporary working space.",
+  "guests": 2,
+  "available": 7,
+  "price": "PKR 75,000",
+  "images": [
+    "https://api.envoyhotel.com/uploads/1779192349166-Executive_King_Room_(3).jpg",
+    "https://api.envoyhotel.com/uploads/1779192427027-Executive_King_Room_(2).jpg",
+    "https://api.envoyhotel.com/uploads/1779192427032-Executive_King_Room_(4).jpg",
+    "https://api.envoyhotel.com/uploads/1779192427037-Executive_King_Room_(5).jpg",
+    "https://api.envoyhotel.com/uploads/1779192427047-Executive_King_Room.jpg"
+  ],
+  "amenities": [
+    "1 Super King bed",
+    "Ergonomic work desk",
+    "Lounge access",
+    "Ambient lighting",
+    "High-speed secure networking",
+    "Executive desk setup",
+    "Private mini bar",
+    "Digital safe",
+    "Top floor view",
+    "Walk-in closet",
+    "Premium spa access",
+    "Rainfall shower bathroom",
+    "Pressing service",
+    "Daily housekeeping"
+  ]
+};
 
 /* Scroll par card smoothly andar aata hai */
 function useReveal() {
@@ -84,12 +65,15 @@ function useReveal() {
   return [ref, visible];
 }
 
-function RoomCard({ room, reversed }) {
+function RoomCard({ room }) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [ref, visible] = useReveal();
   const total = room.images.length;
 
+  const { addToCart } = useCart();
+
+  // Auto slider: har 3 second. Hover par ruk jata hai.
   useEffect(() => {
     if (paused || total < 2) return;
     const timer = setTimeout(() => {
@@ -101,11 +85,14 @@ function RoomCard({ room, reversed }) {
   const half = Math.ceil(room.amenities.length / 2);
   const cols = [room.amenities.slice(0, half), room.amenities.slice(half)];
 
+  // Add to cart handler function
+  const handleAddToCart = () => {
+    addToCart(room);
+  };
+
   return (
-    <article
-      ref={ref}
-      className={`rc-card ${reversed ? 'rc-reversed' : ''} ${visible ? 'rc-in' : ''}`}
-    >
+    <article ref={ref} className={`rc-card ${visible ? 'rc-in' : ''}`}>
+      {/* Gallery */}
       <div
         className="rc-gallery"
         onMouseEnter={() => setPaused(true)}
@@ -153,6 +140,7 @@ function RoomCard({ room, reversed }) {
         </div>
       </div>
 
+      {/* Details */}
       <div className="rc-details">
         <h2 className="rc-title">{room.name}</h2>
         <p className="rc-desc">{room.desc}</p>
@@ -170,7 +158,6 @@ function RoomCard({ room, reversed }) {
             </strong>
           </div>
           <div className="rc-price">
-            <span className="rc-old">{room.oldPrice}</span>
             <span className="rc-now">
               {room.price}
               <small> / night</small>
@@ -194,9 +181,20 @@ function RoomCard({ room, reversed }) {
           ))}
         </div>
 
-        <div className="rc-actions">
-          <a href="#book" className="rc-btn rc-btn-primary">Book this room</a>
-        
+        <div className="rc-actions" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+          {/* Add to Cart Button */}
+          <button 
+            type="button" 
+            className="rc-btn rc-btn-secondary" 
+            onClick={handleAddToCart}
+          >
+            Add to Cart
+          </button>
+
+          {/* Reservation page par isi room ke saath le jata hai */}
+          <Link to={`/reservation?room=${room.id}`} className="rc-btn rc-btn-primary">
+            Book now
+          </Link>
         </div>
       </div>
     </article>
@@ -206,7 +204,7 @@ function RoomCard({ room, reversed }) {
 function ExecutiveKing() {
   return (
     <div className="executive-king-page">
-      {/* Hero Section (same as before) */}
+      {/* Hero Section (unchanged) */}
       <section className="room-inner-hero" aria-labelledby="hero-title">
         <div className="hero-overlay"></div>
         <div className="hero-content">
@@ -219,13 +217,11 @@ function ExecutiveKing() {
       <section className="pro-room-section">
         <div className="container">
           <div className="rc-intro">
-            <h2>Explore Our Executive King Options</h2>
+            <h2>Explore Our Executive King Room</h2>
             <p>Sophisticated decor paired with workspace efficiency and king-sized indulgence.</p>
           </div>
           <div className="rc-list">
-            {rooms.map((room, i) => (
-              <RoomCard key={room.id} room={room} reversed={i % 2 === 1} />
-            ))}
+            <RoomCard room={room} />
           </div>
         </div>
       </section>

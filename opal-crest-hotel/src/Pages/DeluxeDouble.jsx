@@ -1,73 +1,51 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 import '../Style/DeluxeDouble.css';
 import Footer from '../component/Footer';
 
-const SLIDE_MS = 3000; // har 3 second baad image change
+const SLIDE_MS = 3000;
 
-const rooms = [
-  {
-    id: 'deluxe-king',
-    name: 'Deluxe King',
-    badge: '20% OFF',
-    badgeType: 'sale',
-    desc: 'Spacious rooms with king-size beds, modern amenities, and elegant decor perfect for couples and leisure travelers.',
-    guests: 2,
-    available: 10,
-    oldPrice: 'PKR 12,000',
-    price: 'PKR 9,600',
-    images: [
-      'https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/1743229/pexels-photo-1743229.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    ],
-    amenities: [
-      'Complimentary breakfast',
-      'King-size bed',
-      'Small work station',
-      'LED TV with internet access',
-      'Modern ensuite bathroom',
-      'Complimentary high-speed Wi-Fi',
-      '24/7 room service',
-      'Climate control system',
-      'Mini-refrigerator',
-      'Coffee and tea making facilities',
-      'In-room safe',
-      'Daily housekeeping',
-      'Laundry service',
-      'Two Sofas with Table',
-      'Extra mattress available with extra charges',
-    ],
-  },
-  {
-    id: 'garden-courtyard',
-    name: 'Garden Courtyard Double',
-    badge: 'Quiet & Peaceful',
-    badgeType: 'calm',
-    desc: 'A tranquil retreat facing our lush interior courtyard, equipped with premium bedding and peaceful seating area.',
-    guests: 2,
-    available: 6,
-    oldPrice: 'PKR 14,000',
-    price: 'PKR 11,200',
-    images: [
-      'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    ],
-    amenities: [
-      'Courtyard View',
-      '2 Double Beds',
-      'Soundproof windows',
-      'High-speed Wi-Fi',
-      'Modern ensuite bathroom',
-      'Artisan tea station',
-      '24/7 room service',
-      'Daily housekeeping',
-    ],
-  },
-];
+const room = {
+  "id": "deluxe-double",
+  "name": "Deluxe Double Room",
+  "badge": "Quiet & Peaceful",
+  "badgeType": "calm",
+  "desc": "A quiet city sanctuary, dressed in rich neutral textures and thoughtful details.",
+  "guests": 2,
+  "available": 10,
+  "price": "PKR 45,000",
+  "images": [
+    "https://www.hotelcrowncp.com/assets/images/rooms/deluxe%20double/1.webp",
+    "https://www.hotelcrowncp.com/assets/images/rooms/deluxe%20double/2.webp",
+    "https://www.hotelcrowncp.com/assets/images/rooms/deluxe%20double/3.webp",
+    "https://www.hotelcrowncp.com/assets/images/rooms/deluxe%20double/4.webp",
+    "https://www.hotelcrowncp.com/assets/images/rooms/deluxe%20double/5.webp",
+    "https://www.hotelcrowncp.com/assets/images/rooms/deluxe%20double/6.webp",
+    "https://www.hotelcrowncp.com/assets/images/rooms/deluxe%20double/7.webp"
+  ],
+  "amenities": [
+    "Complimentary breakfast",
+    "King-size bed",
+    "Small work station",
+    "LED TV with internet access",
+    "Modern ensuite bathroom",
+    "Complimentary high-speed Wi-Fi",
+    "24/7 room service",
+    "Climate control system",
+    "Mini-refrigerator",
+    "Coffee and tea making facilities",
+    "In-room safe",
+    "Daily housekeeping",
+    "Laundry service",
+    "Two Sofas with Table",
+    "Extra mattress available with extra charges",
+    "Courtyard View",
+    "Soundproof windows",
+    "Artisan tea station"
+  ]
+};
 
-/* Scroll par card smoothly andar aata hai */
 function useReveal() {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -91,14 +69,14 @@ function useReveal() {
   return [ref, visible];
 }
 
-function RoomCard({ room, reversed }) {
+function RoomCard({ room }) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [ref, visible] = useReveal();
   const total = room.images.length;
 
-  // Auto slider: har 3 second. Hover par ruk jata hai.
-  // `active` dependency hai taake thumbnail click par timer dobara 3s se shuru ho.
+  const { addToCart } = useCart();
+
   useEffect(() => {
     if (paused || total < 2) return;
     const timer = setTimeout(() => {
@@ -110,12 +88,12 @@ function RoomCard({ room, reversed }) {
   const half = Math.ceil(room.amenities.length / 2);
   const cols = [room.amenities.slice(0, half), room.amenities.slice(half)];
 
+  const handleAddToCart = () => {
+    addToCart(room);
+  };
+
   return (
-    <article
-      ref={ref}
-      className={`rc-card ${reversed ? 'rc-reversed' : ''} ${visible ? 'rc-in' : ''}`}
-    >
-      {/* Gallery */}
+    <article ref={ref} className={`rc-card ${visible ? 'rc-in' : ''}`}>
       <div
         className="rc-gallery"
         onMouseEnter={() => setPaused(true)}
@@ -133,9 +111,7 @@ function RoomCard({ room, reversed }) {
           ))}
 
           <span className={`rc-badge rc-badge-${room.badgeType}`}>{room.badge}</span>
-          <span className="rc-counter">
-            {active + 1} / {total}
-          </span>
+          <span className="rc-counter">{active + 1} / {total}</span>
 
           {total > 1 && (
             <div className="rc-progress" aria-hidden="true">
@@ -163,7 +139,6 @@ function RoomCard({ room, reversed }) {
         </div>
       </div>
 
-      {/* Details */}
       <div className="rc-details">
         <h2 className="rc-title">{room.name}</h2>
         <p className="rc-desc">{room.desc}</p>
@@ -181,7 +156,6 @@ function RoomCard({ room, reversed }) {
             </strong>
           </div>
           <div className="rc-price">
-            <span className="rc-old">{room.oldPrice}</span>
             <span className="rc-now">
               {room.price}
               <small> / night</small>
@@ -205,9 +179,18 @@ function RoomCard({ room, reversed }) {
           ))}
         </div>
 
-        <div className="rc-actions">
-          <a href="#book" className="rc-btn rc-btn-primary">Book now</a>
-         
+        <div className="rc-actions" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+          <button 
+            type="button" 
+            className="rc-btn rc-btn-secondary" 
+            onClick={handleAddToCart}
+          >
+            Add to Cart
+          </button>
+
+          <Link to={`/reservation?room=${room.id}`} className="rc-btn rc-btn-primary">
+            Book now
+          </Link>
         </div>
       </div>
     </article>
@@ -217,7 +200,6 @@ function RoomCard({ room, reversed }) {
 function DeluxeDouble() {
   return (
     <div className="deluxe-double-page">
-      {/* Hero Section (unchanged) */}
       <section className="room-inner-hero" aria-labelledby="hero-title">
         <div className="hero-overlay"></div>
         <div className="hero-content">
@@ -232,12 +214,9 @@ function DeluxeDouble() {
         </div>
       </section>
 
-      {/* Rooms */}
       <section className="pro-room-section">
         <div className="container rc-list">
-          {rooms.map((room, i) => (
-            <RoomCard key={room.id} room={room} reversed={i % 2 === 1} />
-          ))}
+          <RoomCard room={room} />
         </div>
       </section>
 

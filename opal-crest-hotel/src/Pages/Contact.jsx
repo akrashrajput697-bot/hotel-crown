@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Helmet } from 'react-helmet-async';
 import '../Style/Contact.css';
 import Footer from '../component/Footer';
 
@@ -128,6 +129,26 @@ function Contact() {
 
   return (
     <div className="contact-page">
+      <Helmet>
+        <title>Contact Us & Reservations | The Regal Hotel & Residences</title>
+        <meta name="description" content="Get in touch with The Regal Hotel & Residences in Islamabad. Reach out for room bookings, restaurant reservations, event planning, or general queries." />
+        <meta name="keywords" content="contact the regal, hotel reservations islamabad, hotel phone number, email, address, location map" />
+        <meta name="author" content="The Regal Hotel & Residences" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://yourdomain.com/contact" />
+
+        <meta property="og:title" content="Contact Us & Reservations | The Regal Hotel & Residences" />
+        <meta property="og:description" content="Connect with our front desk, reservations team, or send us a message for any queries regarding your stay in Islamabad." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://yourdomain.com/contact" />
+        <meta property="og:image" content="https://images.pexels.com/photos/15473886/pexels-photo-15473886.jpeg?auto=compress&cs=tinysrgb&w=1000" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact Us & Reservations | The Regal Hotel & Residences" />
+        <meta name="twitter:description" content="Reach out to The Regal Hotel & Residences in Islamabad through phone, email, WhatsApp, or our contact form." />
+        <meta name="twitter:image" content="https://images.pexels.com/photos/15473886/pexels-photo-15473886.jpeg?auto=compress&cs=tinysrgb&w=1000" />
+      </Helmet>
+
       {/* Hero */}
       <section className="room-inner-hero" aria-labelledby="hero-title">
         <div className="hero-overlay"></div>

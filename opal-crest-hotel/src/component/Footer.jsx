@@ -28,7 +28,7 @@ function Footer() {
                   <path d="M15 2v4"></path>
                 </svg>
               </div>
-              <h4>Gourmet Breakfast</h4>
+              <h4> Breakfast</h4>
               <p>Start your morning with a fresh, satisfying, and chef-prepared breakfast, served with warm hospitality to energize you for a wonderful day ahead.</p>
             </div>
 

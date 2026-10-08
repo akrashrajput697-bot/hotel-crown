@@ -1,64 +1,42 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 import '../Style/PremierSuite.css';
 import Footer from '../component/Footer';
 
 const SLIDE_MS = 3000; // har 3 second baad image change
 
-const rooms = [
-  {
-    id: 'royal-premier-suite',
-    name: 'Royal Premier Suite',
-    badge: 'Ultimate Luxury',
-    badgeType: 'calm',
-    desc: 'Separate living room, master king bedroom, marble jacuzzi bathtub, and dedicated butler service.',
-    guests: 3,
-    available: 3,
-    oldPrice: 'PKR 30,000',
-    price: 'PKR 24,000',
-    images: [
-      'https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/1743229/pexels-photo-1743229.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    ],
-    amenities: [
-      'Master king bedroom',
-      'Separate living room',
-      'Private jacuzzi',
-      'Marble bathtub',
-      '24/7 butler service',
-      'Welcome champagne',
-      'Free chauffeur ride',
-      'Complimentary breakfast',
-    ],
-  },
-  {
-    id: 'regal-presidential-penthouse',
-    name: 'Regal Presidential Penthouse',
-    badge: 'Penthouse',
-    badgeType: 'sale',
-    desc: 'Our finest offering featuring panoramic glass walls, private dining area, and ultra-luxurious furnishings.',
-    guests: 4,
-    available: 1,
-    oldPrice: 'PKR 40,000',
-    price: 'PKR 32,000',
-    images: [
-      'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=1000',
-      'https://images.pexels.com/photos/1743229/pexels-photo-1743229.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    ],
-    amenities: [
-      '360 panorama view',
-      'Panoramic glass walls',
-      'Private dining room',
-      'Airport transfer included',
-      'Private jacuzzi',
-      'Personal butler',
-      'Welcome champagne',
-      'Free chauffeur ride',
-    ],
-  },
-];
+// Sirf yehi ek room is page par dikhta hai (data Rooms page ke mutabiq)
+const room = {
+  "id": "premier-suite",
+  "name": "Premier Suite Room",
+  "badge": "The signature stay",
+  "badgeType": "calm",
+  "desc": "The ultimate luxury experience with panoramic views and top-tier amenities.",
+  "guests": 5,
+  "available": 3,
+  "price": "PKR 95,000",
+  "images": [
+    "https://api.envoyhotel.com/uploads/1779192683149-Premier_Suite_Room_(2).jpg",
+    "https://api.envoyhotel.com/uploads/1779192711035-Premier_Suite_Room_(3).jpg",
+    "https://api.envoyhotel.com/uploads/1779192711041-Premier_Suite_Room_(4).jpg",
+    "https://api.envoyhotel.com/uploads/1779192711048-Premier_Suite_Room_(5).jpg"
+  ],
+  "amenities": [
+    "Master king bedroom",
+    "Separate living room",
+    "Private jacuzzi",
+    "Marble bathtub",
+    "24/7 butler service",
+    "Welcome champagne",
+    "Free chauffeur ride",
+    "Complimentary breakfast",
+    "360 panorama view",
+    "Panoramic glass walls",
+    "Private dining room",
+    "Airport transfer included"
+  ]
+};
 
 /* Scroll par card smoothly andar aata hai */
 function useReveal() {
@@ -84,12 +62,15 @@ function useReveal() {
   return [ref, visible];
 }
 
-function RoomCard({ room, reversed }) {
+function RoomCard({ room }) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [ref, visible] = useReveal();
   const total = room.images.length;
 
+  const { addToCart } = useCart();
+
+  // Auto slider: har 3 second. Hover par ruk jata hai.
   useEffect(() => {
     if (paused || total < 2) return;
     const timer = setTimeout(() => {
@@ -101,11 +82,13 @@ function RoomCard({ room, reversed }) {
   const half = Math.ceil(room.amenities.length / 2);
   const cols = [room.amenities.slice(0, half), room.amenities.slice(half)];
 
+  const handleAddToCart = () => {
+    addToCart(room);
+  };
+
   return (
-    <article
-      ref={ref}
-      className={`rc-card ${reversed ? 'rc-reversed' : ''} ${visible ? 'rc-in' : ''}`}
-    >
+    <article ref={ref} className={`rc-card ${visible ? 'rc-in' : ''}`}>
+      {/* Gallery */}
       <div
         className="rc-gallery"
         onMouseEnter={() => setPaused(true)}
@@ -153,6 +136,7 @@ function RoomCard({ room, reversed }) {
         </div>
       </div>
 
+      {/* Details */}
       <div className="rc-details">
         <h2 className="rc-title">{room.name}</h2>
         <p className="rc-desc">{room.desc}</p>
@@ -170,7 +154,6 @@ function RoomCard({ room, reversed }) {
             </strong>
           </div>
           <div className="rc-price">
-            <span className="rc-old">{room.oldPrice}</span>
             <span className="rc-now">
               {room.price}
               <small> / night</small>
@@ -194,9 +177,19 @@ function RoomCard({ room, reversed }) {
           ))}
         </div>
 
-        <div className="rc-actions">
-          <a href="#book" className="rc-btn rc-btn-primary">Book this room</a>
-          <a href="#inquire" className="rc-btn rc-btn-ghost">Inquire</a>
+        <div className="rc-actions" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+          {/* Add to Cart Button */}
+          <button 
+            type="button" 
+            className="rc-btn rc-btn-secondary" 
+            onClick={handleAddToCart}
+          >
+            Add to Cart
+          </button>
+          {/* Reservation page par isi room ke saath le jata hai */}
+          <Link to={`/reservation?room=${room.id}`} className="rc-btn rc-btn-primary">
+            Book now
+          </Link>
         </div>
       </div>
     </article>
@@ -206,7 +199,7 @@ function RoomCard({ room, reversed }) {
 function PremierSuite() {
   return (
     <div className="premier-suite-page">
-      {/* Hero Section (same as before) */}
+      {/* Hero Section (unchanged) */}
       <section className="room-inner-hero" aria-labelledby="hero-title">
         <div className="hero-overlay"></div>
         <div className="hero-content">
@@ -219,13 +212,11 @@ function PremierSuite() {
       <section className="pro-room-section">
         <div className="container">
           <div className="rc-intro">
-            <h2>Explore Our Premier Suites</h2>
+            <h2>Explore Our Premier Suite</h2>
             <p>Experience unmatched luxury with master living quarters and royal amenities.</p>
           </div>
           <div className="rc-list">
-            {rooms.map((room, i) => (
-              <RoomCard key={room.id} room={room} reversed={i % 2 === 1} />
-            ))}
+            <RoomCard room={room} />
           </div>
         </div>
       </section>
