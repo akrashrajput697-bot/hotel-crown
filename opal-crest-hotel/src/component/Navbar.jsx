@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useUserData } from '../utils/userData';
 import '../Style/Navbar.css';
 
 // Firebase Imports
@@ -55,6 +56,10 @@ function Navbar() {
   const navbarRef = useRef(null);
 
   const { cartItems, cartOpen, setCartOpen, updateQuantity, removeItem } = useCart();
+
+  // Unread notifications (new booking / points / reward) -> red dot on the avatar
+  const { notifications } = useUserData(user?.uid);
+  const unreadCount = notifications.filter((n) => !n.read).length;
 
   // Scroll state
   useEffect(() => {
@@ -224,10 +229,11 @@ function Navbar() {
                   type="button"
                   className="regal-profile-icon-btn"
                   onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-                  aria-label="Account menu"
+                  aria-label={unreadCount > 0 ? `Account menu, ${unreadCount} unread notifications` : 'Account menu'}
                   aria-expanded={profileDropdownOpen}
                 >
                   {getInitial()}
+                  {unreadCount > 0 && <span className="regal-notif-dot" aria-hidden="true" />}
                 </button>
 
                 {profileDropdownOpen && (
@@ -241,6 +247,9 @@ function Navbar() {
                     {PROFILE_LINKS.map((l) => (
                       <Link key={l.to} to={l.to} className="regal-profile-link">
                         {l.label}
+                        {l.to === '/notifications' && unreadCount > 0 && (
+                          <span className="regal-profile-badge">{unreadCount}</span>
+                        )}
                       </Link>
                     ))}
                     <button type="button" onClick={handleLogout} className="regal-logout-btn">

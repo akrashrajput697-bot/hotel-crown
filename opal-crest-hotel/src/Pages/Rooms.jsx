@@ -170,7 +170,7 @@ function Rooms() {
       <section className="regal-rooms-section">
         <div className="rooms-container">
           <div className="rooms-header">
-            <span className="rooms-subtitle">OUR PLACE IN THE CITY</span>
+            <span className="rooms-subtitle">Chose your stay</span>
             <h2>Find the right kind of room</h2>
 
             <div className="rooms-tabs">
