@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
-import { CartProvider } from './context/CartContext'; // Sahi import
+import { CartProvider } from './context/CartContext';
 
 import Navbar from './component/Navbar';
 import Preloader from './component/Preloader';

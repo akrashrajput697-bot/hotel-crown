@@ -3,13 +3,18 @@ import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import '../Style/Navbar.css';
 
+// Firebase Imports
+import { auth, googleProvider } from '../firebase'; 
+import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
+
 function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
+  const [user, setUser] = useState(null);
   const location = useLocation();
   const navbarRef = useRef(null);
 
-  // Global Cart Context se data nikal liya hai
   const { cartItems, cartOpen, setCartOpen, updateQuantity, removeItem } = useCart();
 
   useEffect(() => {
@@ -20,16 +25,44 @@ function Navbar() {
         setIsScrolled(false);
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu or cart when clicking outside
+  // Firebase Auth State Listener
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  // Google Sign-In Function
+  const handleGoogleLogin = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+      alert("Successfully Logged In!");
+    } catch (error) {
+      console.error("Login Error:", error.message);
+    }
+  };
+
+  // Logout Function
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      setProfileDropdownOpen(false);
+      alert("Logged out successfully!");
+    } catch (error) {
+      console.error("Logout Error:", error.message);
+    }
+  };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (navbarRef.current && !navbarRef.current.contains(event.target)) {
         setMenuOpen(false);
+        setProfileDropdownOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -40,7 +73,6 @@ function Navbar() {
 
   const totalItemsCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
-  // Subtotal calculation (agar price string format mein ho jaise "PKR 45,000" ya number ho)
   const subtotal = cartItems.reduce((acc, item) => {
     const numericPrice = typeof item.price === 'string' 
       ? parseFloat(item.price.replace(/[^0-9.-]+/g, "")) 
@@ -51,6 +83,17 @@ function Navbar() {
 
   const tax = subtotal * 0.16;
   const total = subtotal + tax;
+
+  // Get first letter of email
+  const getInitial = () => {
+    if (user && user.email) {
+      return user.email.charAt(0).toUpperCase();
+    }
+    if (user && user.displayName) {
+      return user.displayName.charAt(0).toUpperCase();
+    }
+    return 'A';
+  };
 
   return (
     <>
@@ -94,13 +137,55 @@ function Navbar() {
           </div>
 
           {/* Right Auth & Cart Section */}
-          <div className="regal-auth-section">
-            <Link to="/login" className="regal-auth-link">Login</Link>
-            <span className="auth-divider">/</span>
-            <Link to="/signup" className="regal-auth-link">Sign Up</Link>
+          <div className="regal-auth-section" style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+            {user ? (
+              <div className="regal-profile-container" style={{ position: 'relative' }}>
+                {/* Profile Icon / Avatar Button (Strictly Email Initial) */}
+                <div 
+                  className="regal-profile-icon-btn" 
+                  onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
+                  style={{ width: '38px', height: '38px', borderRadius: '50%', backgroundColor: '#0084ff', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontWeight: 'bold', border: '2px solid #fff', fontSize: '18px', flexShrink: 0, boxShadow: '0 2px 5px rgba(0,0,0,0.2)' }}
+                >
+                  <span>{getInitial()}</span>
+                </div>
+
+                {/* Profile Dropdown Menu */}
+                {profileDropdownOpen && (
+                  <div className="regal-profile-dropdown" style={{ position: 'absolute', right: '0', top: '48px', width: '220px', backgroundColor: '#fff', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.15)', padding: '8px 0', zIndex: 1000, color: '#333' }}>
+                    <div style={{ padding: '10px 16px', borderBottom: '1px solid #eee', fontSize: '13px', fontWeight: 'bold', color: '#111', wordBreak: 'break-all' }}>
+                      {user.email || user.displayName || 'User'}
+                    </div>
+                    <Link to="/notifications" onClick={() => setProfileDropdownOpen(false)} style={{ display: 'block', padding: '10px 16px', color: '#333', textDecoration: 'none', fontSize: '14px' }}>Notifications</Link>
+                    <Link to="/loyalty-points" onClick={() => setProfileDropdownOpen(false)} style={{ display: 'block', padding: '10px 16px', color: '#333', textDecoration: 'none', fontSize: '14px' }}>Loyalty Points</Link>
+                    <Link to="/account" onClick={() => setProfileDropdownOpen(false)} style={{ display: 'block', padding: '10px 16px', color: '#333', textDecoration: 'none', fontSize: '14px' }}>Manage Your Account</Link>
+                    <Link to="/activity" onClick={() => setProfileDropdownOpen(false)} style={{ display: 'block', padding: '10px 16px', color: '#333', textDecoration: 'none', fontSize: '14px' }}>Activity</Link>
+                    <div style={{ borderTop: '1px solid #eee', marginTop: '4px', paddingTop: '4px' }}>
+                      <button onClick={handleLogout} style={{ width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '10px 16px', color: '#d9534f', fontSize: '14px', cursor: 'pointer', fontWeight: '500' }}>
+                        Logout
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <button 
+                  onClick={handleGoogleLogin} 
+                  style={{ background: 'transparent', border: '1px solid #c5a059', color: '#c5a059', padding: '6px 12px', cursor: 'pointer', borderRadius: '4px', fontSize: '13px', fontWeight: '600' }}
+                >
+                  Login
+                </button>
+                <button 
+                  onClick={handleGoogleLogin} 
+                  style={{ background: '#c5a059', border: '1px solid #c5a059', color: '#fff', padding: '6px 12px', cursor: 'pointer', borderRadius: '4px', fontSize: '13px', fontWeight: '600' }}
+                >
+                  Sign Up
+                </button>
+              </div>
+            )}
             
-            {/* Cart Icon triggers slide-over drawer */}
-            <div className="regal-cart-icon" onClick={() => setCartOpen(true)} style={{ cursor: 'pointer', position: 'relative', display: 'inline-flex', alignItems: 'center' }}>
+            {/* Cart Icon */}
+            <div className="regal-cart-icon" onClick={() => setCartOpen(true)} style={{ cursor: 'pointer', position: 'relative', display: 'inline-flex', alignItems: 'center', color: '#fff', fontSize: '18px' }}>
               🛒
               <span className="cart-badge">{totalItemsCount}</span>
             </div>

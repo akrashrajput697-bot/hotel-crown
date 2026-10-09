@@ -35,8 +35,13 @@ export function CartProvider({ children }) {
     setCartItems(prev => prev.filter(item => item.id !== id));
   };
 
+  const proceedToCheckout = () => {
+    setCartOpen(false);
+    window.location.href = '/reservation'; // Yeh bina kisi error ke seedha reservation page par le jayega
+  };
+
   return (
-    <CartContext.Provider value={{ cartItems, cartOpen, setCartOpen, addToCart, updateQuantity, removeItem }}>
+    <CartContext.Provider value={{ cartItems, cartOpen, setCartOpen, addToCart, updateQuantity, removeItem, proceedToCheckout }}>
       {children}
     </CartContext.Provider>
   );
