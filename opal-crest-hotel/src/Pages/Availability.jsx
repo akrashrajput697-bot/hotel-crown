@@ -2,7 +2,6 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../Style/Availability.css';
 
-const WHATSAPP = '923000000000'; // country code ke saath, bina + ke
 const DAY = 86400000;
 const img = (id, w = 900) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}`;
 
@@ -24,6 +23,10 @@ const ROOMS = [
 const FILTERS = ['All', 'Deluxe', 'Executive', 'Suite'];
 const fmt = (d) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 const pkr = (n) => `PKR ${n.toLocaleString('en-US')}`;
+
+// Date -> YYYY-MM-DD (local time), the format the Reservation page expects
+const iso = (d) =>
+    `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 
 function Reveal({ children, delay = 0 }) {
     const ref = useRef(null);
@@ -69,6 +72,17 @@ function Availability() {
     }, [filter, sort, rooms, guests]);
 
     const availableCount = results.filter((r) => r.available).length;
+
+    // "Book now" opens the Reservation page with the room and your search already filled in
+    const bookUrl = (r) =>
+        `/reservation?${new URLSearchParams({
+            room: r.id,
+            checkin: iso(start),
+            checkout: iso(end),
+            guests: String(adults),
+            children: String(children),
+            rooms: String(rooms),
+        }).toString()}`;
 
     return (
         <div className="av-page">
@@ -126,45 +140,42 @@ function Availability() {
                     </div>
                 ) : (
                     <div className="av-list">
-                        {results.map((r, i) => {
-                            const waText = encodeURIComponent(`Hello, I would like to book ${r.name} (${rooms} room, ${guests} guests) from ${fmt(start)} to ${fmt(end)}.`);
-                            return (
-                                <Reveal key={r.id} delay={i * 80}>
-                                    <article className={`av-card ${r.available ? '' : 'is-sold'}`}>
-                                        <div className="av-media">
-                                            <img src={r.image} alt={r.name} loading="lazy" onError={(e) => { e.currentTarget.style.visibility = 'hidden'; }} />
-                                            <span className={`av-badge ${r.available ? (r.left <= 2 ? 'warn' : 'ok') : 'out'}`}>
-                                                {r.available ? (r.left <= 2 ? `Only ${r.left} left` : 'Available') : 'Not available'}
-                                            </span>
-                                        </div>
-                                        <div className="av-body">
-                                            <span className="av-type">{r.type}</span>
-                                            <h3>{r.name}</h3>
-                                            <ul className="av-meta">
-                                                <li>{r.bed}</li><li>Up to {r.max} guests</li><li>{r.size}</li>
-                                            </ul>
-                                            <ul className="av-perks">
-                                                {r.perks.map((p) => <li key={p}>{p}</li>)}
-                                            </ul>
-                                            <div className="av-foot">
-                                                <div className="av-price">
-                                                    <strong>{pkr(r.price)}</strong><span> / night</span>
-                                                    <small>{pkr(r.price * nights * rooms)} total · {nights} night{nights > 1 ? 's' : ''}</small>
-                                                </div>
-                                                <div className="av-actions">
-                                                    <Link className="av-btn av-btn-ghost" to={r.path}>Details</Link>
-                                                    {r.available ? (
-                                                        <a className="av-btn av-btn-primary" href={`https://wa.me/${WHATSAPP}?text=${waText}`} target="_blank" rel="noreferrer">Book now</a>
-                                                    ) : (
-                                                        <span className="av-btn av-btn-disabled">Sold out</span>
-                                                    )}
-                                                </div>
+                        {results.map((r, i) => (
+                            <Reveal key={r.id} delay={i * 80}>
+                                <article className={`av-card ${r.available ? '' : 'is-sold'}`}>
+                                    <div className="av-media">
+                                        <img src={r.image} alt={r.name} loading="lazy" onError={(e) => { e.currentTarget.style.visibility = 'hidden'; }} />
+                                        <span className={`av-badge ${r.available ? (r.left <= 2 ? 'warn' : 'ok') : 'out'}`}>
+                                            {r.available ? (r.left <= 2 ? `Only ${r.left} left` : 'Available') : 'Not available'}
+                                        </span>
+                                    </div>
+                                    <div className="av-body">
+                                        <span className="av-type">{r.type}</span>
+                                        <h3>{r.name}</h3>
+                                        <ul className="av-meta">
+                                            <li>{r.bed}</li><li>Up to {r.max} guests</li><li>{r.size}</li>
+                                        </ul>
+                                        <ul className="av-perks">
+                                            {r.perks.map((p) => <li key={p}>{p}</li>)}
+                                        </ul>
+                                        <div className="av-foot">
+                                            <div className="av-price">
+                                                <strong>{pkr(r.price)}</strong><span> / night</span>
+                                                <small>{pkr(r.price * nights * rooms)} total · {nights} night{nights > 1 ? 's' : ''}</small>
+                                            </div>
+                                            <div className="av-actions">
+                                                <Link className="av-btn av-btn-ghost" to={r.path}>Details</Link>
+                                                {r.available ? (
+                                                    <Link className="av-btn av-btn-primary" to={bookUrl(r)}>Book now</Link>
+                                                ) : (
+                                                    <span className="av-btn av-btn-disabled">Sold out</span>
+                                                )}
                                             </div>
                                         </div>
-                                    </article>
-                                </Reveal>
-                            );
-                        })}
+                                    </div>
+                                </article>
+                            </Reveal>
+                        ))}
                     </div>
                 )}
             </div>

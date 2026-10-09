@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useSearchParams } from 'react-router-dom';
+import { signInWithPopup } from 'firebase/auth';
+import { auth, googleProvider } from '../firebase';
+import { addBooking } from '../utils/userData';
 import '../Style/Reservation.css';
 import {
   CalendarDays,
@@ -279,6 +282,9 @@ function Confirmation({ data, onReset }) {
         <button type="button" className="rsv-btn rsv-btn-outline" onClick={onReset}>
           Make another reservation
         </button>
+        <Link to="/activity" className="rsv-btn rsv-btn-outline">
+          View my bookings
+        </Link>
         <Link to="/" className="rsv-btn rsv-btn-primary">
           Back to home <ArrowRight size={16} />
         </Link>
@@ -313,13 +319,15 @@ function Reservation() {
       checkOut = addDays(checkIn, 1);
     }
     const guestsParam = parseInt(params.get('guests'), 10);
+    const childrenParam = parseInt(params.get('children'), 10);
+    const roomsParam = parseInt(params.get('rooms'), 10);
     return {
       room,
       checkIn,
       checkOut,
       adults: guestsParam > 0 && guestsParam <= 10 ? guestsParam : 2,
-      children: 0,
-      rooms: 1,
+      children: childrenParam >= 0 && childrenParam <= 8 ? childrenParam : 0,
+      rooms: roomsParam >= 1 && roomsParam <= 5 ? roomsParam : 1,
     };
   });
 
@@ -442,6 +450,19 @@ function Reservation() {
       return;
     }
 
+    // The booking is saved to the guest's account (Activity, Notifications, Loyalty Points),
+    // so the guest must be logged in. If not, ask them to log in with Google first.
+    let currentUser = auth.currentUser;
+    if (!currentUser) {
+      try {
+        const result = await signInWithPopup(auth, googleProvider);
+        currentUser = result.user;
+      } catch (err) {
+        setErrors({ login: 'Please log in with Google to reserve, so this booking is saved to your account.' });
+        return;
+      }
+    }
+
     setSubmitting(true);
 
     // TODO: connect your backend / email service here (fetch POST with the data below).
@@ -452,6 +473,22 @@ function Reservation() {
     const guestsText = `${stay.adults} adult${stay.adults > 1 ? 's' : ''}${
       stay.children ? `, ${stay.children} child${stay.children > 1 ? 'ren' : ''}` : ''
     }`;
+
+    // Save the booking: it now shows in Activity (Upcoming) and creates a notification.
+    try {
+      addBooking(currentUser.uid, {
+        id: ref,
+        roomName: selectedRoom.name,
+        image: selectedRoom.image,
+        checkIn: stay.checkIn,
+        checkOut: stay.checkOut,
+        guests: totalGuests,
+        rooms: stay.rooms,
+        total,
+      });
+    } catch (err) {
+      console.error('Could not save booking:', err);
+    }
 
     setConfirmation({
       ref,
@@ -884,6 +921,7 @@ function Reservation() {
                         </label>
                         <FieldError msg={errors.agree} />
                       </div>
+                      <FieldError msg={errors.login} />
                     </div>
                   </Reveal>
                 </form>
