@@ -24,6 +24,10 @@ import ExecutiveKing from './Pages/ExecutiveKing';
 import ExecutiveTwin from './Pages/ExecutiveTwin';
 import PremierSuite from './Pages/PremierSuite';
 
+// Auth pages
+import Login from './Pages/Login';
+import Signup from './Pages/Signup';
+
 // Logged-in user pages
 import Notifications from './Pages/Notifications';
 import LoyaltyPoints from './Pages/LoyaltyPoints';
@@ -34,7 +38,7 @@ import Footer from './component/Footer';
 import FloatingActions from './component/FloatingActions';
 
 // Pages where the footer must not appear
-const NO_FOOTER_PATHS = ['/notifications', '/loyalty-points', '/account', '/activity'];
+const NO_FOOTER_PATHS = ['/notifications', '/loyalty-points', '/account', '/activity', '/login', '/signup'];
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -76,6 +80,10 @@ function LayoutWrapper() {
         <Route path="/executive-king" element={<ExecutiveKing />} />
         <Route path="/executive-twin" element={<ExecutiveTwin />} />
         <Route path="/premier-suite" element={<PremierSuite />} />
+
+        {/* Auth routes */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
 
         {/* Profile dropdown pages */}
         <Route path="/notifications" element={<Notifications />} />

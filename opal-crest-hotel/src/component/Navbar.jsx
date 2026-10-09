@@ -5,8 +5,8 @@ import { useUserData } from '../utils/userData';
 import '../Style/Navbar.css';
 
 // Firebase Imports
-import { auth, googleProvider } from '../firebase';
-import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../firebase';
+import { signOut, onAuthStateChanged } from 'firebase/auth';
 
 const NAV_LINKS = [
   { to: '/', label: 'Home', match: ['/', '/home'] },
@@ -57,11 +57,9 @@ function Navbar() {
 
   const { cartItems, cartOpen, setCartOpen, updateQuantity, removeItem } = useCart();
 
-  // Unread notifications (new booking / points / reward) -> red dot on the avatar
   const { notifications } = useUserData(user?.uid);
   const unreadCount = notifications.filter((n) => !n.read).length;
 
-  // Scroll state
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 30);
     handleScroll();
@@ -69,20 +67,17 @@ function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Firebase Auth State Listener
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => setUser(currentUser));
     return () => unsubscribe();
   }, []);
 
-  // Close everything on route change
   useEffect(() => {
     setMenuOpen(false);
     setMoreOpen(false);
     setProfileDropdownOpen(false);
   }, [location.pathname]);
 
-  // Click outside + Escape key
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (navbarRef.current && !navbarRef.current.contains(event.target)) {
@@ -107,21 +102,12 @@ function Navbar() {
     };
   }, [setCartOpen]);
 
-  // Lock page scroll while the cart drawer is open
   useEffect(() => {
     document.body.style.overflow = cartOpen ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
   }, [cartOpen]);
-
-  const handleGoogleLogin = async () => {
-    try {
-      await signInWithPopup(auth, googleProvider);
-    } catch (error) {
-      console.error('Login Error:', error.message);
-    }
-  };
 
   const handleLogout = async () => {
     try {
@@ -162,7 +148,6 @@ function Navbar() {
         ref={navbarRef}
       >
         <div className="regal-nav-content">
-          {/* Mobile hamburger */}
           <button
             className={`regal-hamburger ${menuOpen ? 'is-open' : ''}`}
             onClick={() => setMenuOpen(!menuOpen)}
@@ -174,7 +159,6 @@ function Navbar() {
             <span />
           </button>
 
-          {/* Brand */}
           <Link to="/" className="regal-brand-logo-link" aria-label="The Regal Hotel & Residences, home">
             <span className="regal-logo-box">
               <span className="regal-logo-monogram">TR</span>
@@ -185,7 +169,6 @@ function Navbar() {
             </span>
           </Link>
 
-          {/* Links */}
           <div className={`regal-menu-section ${menuOpen ? 'mobile-open' : ''}`}>
             {NAV_LINKS.map((l) => (
               <Link
@@ -221,7 +204,6 @@ function Navbar() {
             </div>
           </div>
 
-          {/* Auth + Cart */}
           <div className="regal-auth-section">
             {user ? (
               <div className="regal-profile-container">
@@ -260,12 +242,13 @@ function Navbar() {
               </div>
             ) : (
               <div className="regal-auth-buttons">
-                <button type="button" onClick={handleGoogleLogin} className="regal-btn-ghost">
+                {/* Added textDecoration: 'none' to remove underline */}
+                <Link to="/login" className="regal-btn-ghost" style={{ textDecoration: 'none' }}>
                   Log in
-                </button>
-                <button type="button" onClick={handleGoogleLogin} className="regal-btn-solid">
+                </Link>
+                <Link to="/signup" className="regal-btn-solid" style={{ textDecoration: 'none' }}>
                   Sign up
-                </button>
+                </Link>
               </div>
             )}
 
